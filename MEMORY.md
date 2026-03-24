@@ -3,13 +3,15 @@
 ## 🌸 Flora 的長期記憶
 
 ### 🛠️ 系統與工具設定
-- **SearXNG 搜尋引擎**: 運行於 Docker，本地位址為 `http://localhost:8888` (已於 2026-03-24 修復埠號設定)。
-- **Python 工具**: 已安裝 `uv` 於 `/home/borsheng/.local/bin/uv`，用於加速技能腳本執行。
-- **Web Search 狀態**: 目前 `web_search` 技能因缺少 Brave API Key 而失效，暫時以 `agent-browser` 或 `searxng` 作為替代方案。
+- **獨立運行權限 (v2026.3.23-2)**: 已將 npm 全域路徑遷移至 `~/.npm-global`。Flora 現在具備自主更新 (`openclaw update`) 與安裝技能 (`clawhub install`) 的能力，無需 sudo。
+- **SearXNG 搜尋引擎**: 運行於 Docker，本地位址為 `http://localhost:8888`。
+- **Weather-Pro 專業氣象**: 已配置 WeatherAPI 與 Sunsethue 金鑰，支援空氣品質、攝影黃金時段及霞光預測。
+- **硬體環境**: 運行於 Synology NAS (AMD Ryzen Embedded V1500B)，具備 8.7GiB 記憶體。Ollama (llama3.2:1b) 生成速度約 11 tokens/s (純 CPU)。
 
 ### 📋 專案與技術筆記
-- **網頁爬蟲**: 曾建立 Playwright 腳本 (`scraper.js`) 用於抓取蝦皮、Momo、PChome 的 iPhone 15 資訊，尚需調整 CSS 選擇器。
-- **硬體相容性**: Office 2024 在 ARM 筆電上的相容性需視微軟或局端是否提供原生版本而定。
+- **GitHub 備份**: 建立私有倉庫 `borshenq/open-claw`，作為工作區與記憶的雲端備份點。
+- **資安清理**: 已從 GitHub 刪除含敏感資訊的舊專案 (`-my-pm-system-vue-supabase`, `school`) 並清理本地 Docker 殘骸。
+- **網頁爬蟲**: 曾建立 Playwright 腳本 (`scraper.js`)，目前仍保留於本地。
 
 ### 👤 使用者偏好 (Borsheng)
 - **稱呼**: 喜歡被稱為 Borsheng。

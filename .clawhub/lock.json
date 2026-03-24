@@ -12,6 +12,10 @@
     "searxng": {
       "version": "1.0.3",
       "installedAt": 1774243863127
+    },
+    "weather-pro": {
+      "version": "1.4.0",
+      "installedAt": 1774361420020
     }
   }
 }
