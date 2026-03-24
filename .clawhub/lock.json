@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "weather": {
+      "version": "1.0.0",
+      "installedAt": 1774147953202
+    },
+    "agent-browser-clawdbot": {
+      "version": "0.1.0",
+      "installedAt": 1774148522012
+    },
+    "searxng": {
+      "version": "1.0.3",
+      "installedAt": 1774243863127
+    }
+  }
+}
