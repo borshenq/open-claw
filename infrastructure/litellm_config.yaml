@@ -1,0 +1,24 @@
+model_list:
+  - model_name: flora-brain-hq # Alias for PC GPU
+    litellm_params:
+      model: ollama/qwen3.5:latest
+      api_base: "http://192.60.1.110:11434/v1"
+      provider: "ollama" # Explicitly specify provider
+      api_key: "not-needed"
+    model_info:
+      id: "pc-gpu"
+      priority: 1
+
+  - model_name: flora-brain-hq-nas # Alias for NAS CPU
+    litellm_params:
+      model: ollama/llama3.2:1b
+      api_base: "http://host.docker.internal:11434/v1"
+      provider: "ollama" # Explicitly specify provider
+      api_key: "not-needed"
+    model_info:
+      id: "nas-cpu"
+      priority: 10
+
+router_settings:
+  routing_strategy: "latency-based-routing"
+  enable_pre_call_checks: true
