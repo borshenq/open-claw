@@ -6,7 +6,8 @@
 - **獨立運行權限 (v2026.3.23-2)**: 已將 npm 全域路徑遷移至 `~/.npm-global`。Flora 現在具備自主更新 (`openclaw update`) 與安裝技能 (`clawhub install`) 的能力，無需 sudo。
 - **SearXNG 搜尋引擎**: 運行於 Docker，本地位址為 `http://localhost:8888`。
 - **Weather-Pro 專業氣象**: 已配置 WeatherAPI 與 Sunsethue 金鑰，支援空氣品質、攝影黃金時段及霞光預測。
-- **硬體環境**: 運行於 Synology NAS (AMD Ryzen Embedded V1500B)，具備 8.7GiB 記憶體。Ollama (llama3.2:1b) 生成速度約 11 tokens/s (純 CPU)。
+- **算力集群 (LiteLLM)**: 在 NAS 上部署了 LiteLLM Proxy (Port 4000)，整合了 PC GPU (192.60.1.110) 與 NAS CPU (localhost) 的算力。Flora 現在會優先使用 PC 的顯卡進行高速運算，並在 PC 離線時自動回退至 NAS。已通過雙節點壓力測試。
+- **教育與創意資源**: 建立了貴子坑環境教育導覽腳本（分低、中、高年級版）及完整的動物 Emoji 分類資料庫 (`memory/animal_representatives.md`)。
 
 ### 📋 專案與技術筆記
 - **GitHub 備份**: 建立私有倉庫 `borshenq/open-claw`，作為工作區與記憶的雲端備份點。
