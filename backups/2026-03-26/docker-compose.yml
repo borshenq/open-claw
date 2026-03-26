@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # --- SearXNG 搜尋引擎 ---
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    restart: always
+    ports:
+      - "127.0.0.1:8888:8080"
+    networks:
+      - openclaw-net
+    volumes:
+      - ./searxng:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=http://localhost:8080/
+    depends_on:
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+
+  # --- Redis (供 SearXNG 緩存與 OpenClaw 使用) ---
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    command: redis-server --save 60 1 --loglevel warning
+    networks:
+      - openclaw-net
+    volumes:
+      - redis-data:/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
+  # --- LiteLLM 算力集群 ---
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: litellm
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    command: ["--config", "/app/config.yaml"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - openclaw-net
+    restart: always
+
+networks:
+  openclaw-net:
+    driver: bridge
+
+volumes:
+  redis-data:
