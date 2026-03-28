@@ -1,0 +1,351 @@
+# Nmap 7.95 scan initiated Thu Mar 26 22:50:58 2026 as: nmap -sV -sC -iL batch_2.txt -oN scan_batch_2.txt
+Nmap scan report for syn-192-060-001-120.res.spectrum.com (192.60.1.120)
+Host is up (0.0013s latency).
+Not shown: 994 filtered tcp ports (no-response)
+PORT     STATE SERVICE      VERSION
+21/tcp   open  tcpwrapped
+80/tcp   open  http         Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: Site doesn't have a title.
+|_http-server-header: Microsoft-IIS/10.0
+135/tcp  open  msrpc        Microsoft Windows RPC
+139/tcp  open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds Windows 10 Enterprise 26200 microsoft-ds (workgroup: WORKGROUP)
+5357/tcp open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Service Unavailable
+|_http-server-header: Microsoft-HTTPAPI/2.0
+Service Info: Host: SMAA10-11204; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb-os-discovery: 
+|   OS: Windows 10 Enterprise 26200 (Windows 10 Enterprise 6.3)
+|   OS CPE: cpe:/o:microsoft:windows_10::-
+|   Computer name: SMAA10-11204
+|   NetBIOS computer name: SMAA10-11204\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2026-03-26T22:53:41+08:00
+|_nbstat: NetBIOS name: SMAA10-11204, NetBIOS user: <unknown>, NetBIOS MAC: c8:7f:54:16:f3:c1 (ASUSTek Computer)
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2026-03-26T14:53:48
+|_  start_date: N/A
+|_clock-skew: mean: -2h40m00s, deviation: 4h37m07s, median: 0s
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Nmap scan report for syn-192-060-001-121.res.spectrum.com (192.60.1.121)
+Host is up (0.0016s latency).
+Not shown: 995 filtered tcp ports (no-response)
+PORT    STATE SERVICE      VERSION
+21/tcp  open  tcpwrapped
+80/tcp  open  http         Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: Site doesn't have a title.
+135/tcp open  msrpc        Microsoft Windows RPC
+139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp open  microsoft-ds Windows 10 Enterprise 26200 microsoft-ds (workgroup: WORKGROUP)
+Service Info: Host: SMAA10-11203; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb-os-discovery: 
+|   OS: Windows 10 Enterprise 26200 (Windows 10 Enterprise 6.3)
+|   OS CPE: cpe:/o:microsoft:windows_10::-
+|   Computer name: SMAA10-11203
+|   NetBIOS computer name: SMAA10-11203\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2026-03-26T22:53:48+08:00
+| smb2-time: 
+|   date: 2026-03-26T14:53:49
+|_  start_date: N/A
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+|_nbstat: NetBIOS name: SMAA10-11203, NetBIOS user: <unknown>, NetBIOS MAC: c8:7f:54:16:f2:c8 (ASUSTek Computer)
+|_clock-skew: mean: -2h39m57s, deviation: 4h37m03s, median: 0s
+
+Nmap scan report for syn-192-060-001-122.res.spectrum.com (192.60.1.122)
+Host is up (0.0016s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+53/tcp open  domain  Unbound
+
+Nmap scan report for syn-192-060-001-127.res.spectrum.com (192.60.1.127)
+Host is up (0.0015s latency).
+Not shown: 989 closed tcp ports (conn-refused)
+Bug in iscsi-info: no string output.
+PORT     STATE SERVICE           VERSION
+80/tcp   open  http              nginx
+|_http-title: Site doesn't have a title (text/html).
+139/tcp  open  netbios-ssn       Samba smbd 4
+443/tcp  open  ssl/http          nginx
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=synology/organizationName=Synology Inc./countryName=TW
+| Subject Alternative Name: DNS:synology
+| Not valid before: 2025-10-29T03:37:49
+|_Not valid after:  2026-10-30T03:37:49
+|_http-title: Site doesn't have a title (text/html).
+445/tcp  open  netbios-ssn       Samba smbd 4
+3260/tcp open  iscsi             Synology DSM iSCSI
+3261/tcp open  winshadow?
+5000/tcp open  http              nginx
+|_http-title: Site doesn't have a title.
+| http-robots.txt: 1 disallowed entry 
+|_/
+5001/tcp open  ssl/http          nginx
+| http-robots.txt: 1 disallowed entry 
+|_/
+| ssl-cert: Subject: commonName=synology/organizationName=Synology Inc./countryName=TW
+| Subject Alternative Name: DNS:synology
+| Not valid before: 2025-10-29T03:37:49
+|_Not valid after:  2026-10-30T03:37:49
+|_ssl-date: TLS randomness does not represent time
+|_http-title: DTPSDS925&nbsp;-&nbsp;Synology&nbsp;NAS
+5357/tcp open  http              nginx
+|_http-title: 502 Bad Gateway
+5510/tcp open  secureidprop?
+5566/tcp open  synobtrfsreplicad Synology Snapshot Replication shared folder
+Service Info: Device: storage-misc
+
+Host script results:
+|_nbstat: NetBIOS name: DTPSDS925, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+|_clock-skew: 9s
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2026-03-26T14:54:07
+|_  start_date: N/A
+
+Nmap scan report for syn-192-060-001-138.res.spectrum.com (192.60.1.138)
+Host is up (0.011s latency).
+Not shown: 995 closed tcp ports (conn-refused)
+PORT     STATE SERVICE    VERSION
+80/tcp   open  http       Debut embedded httpd 1.30 (Brother/HP printer http admin)
+|_http-server-header: debut/1.30
+| http-robots.txt: 1 disallowed entry 
+|_/
+443/tcp  open  ssl/http   Debut embedded httpd 1.30 (Brother/HP printer http admin)
+| http-robots.txt: 1 disallowed entry 
+|_/
+| ssl-cert: Subject: commonName=172-17-3247F046.local
+| Not valid before: 2000-01-01T00:00:00
+|_Not valid after:  2110-12-31T23:59:59
+|_ssl-date: TLS randomness does not represent time
+515/tcp  open  printer
+631/tcp  open  http       Debut embedded httpd 1.30 (Brother/HP printer http admin)
+|_http-server-header: debut/1.30
+| http-robots.txt: 1 disallowed entry 
+|_/
+9100/tcp open  jetdirect?
+Service Info: Device: printer
+
+Nmap scan report for syn-192-060-001-140.res.spectrum.com (192.60.1.140)
+Host is up (0.00075s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      Dropbear sshd 2017.75 (protocol 2.0)
+443/tcp open  ssl/http BusyBox http 1.19.4
+|_http-title: Site doesn't have a title (text/html).
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=PU431FTH22028374/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Not valid before: 2022-11-24T01:39:53
+|_Not valid after:  2038-01-19T03:14:07
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for syn-192-060-001-141.res.spectrum.com (192.60.1.141)
+Host is up (0.0021s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      Dropbear sshd 2017.75 (protocol 2.0)
+443/tcp open  ssl/http BusyBox http 1.19.4
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=PU431FTH20008875/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Not valid before: 2020-01-07T14:07:45
+|_Not valid after:  2038-01-19T03:14:07
+|_http-title: Site doesn't have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for syn-192-060-001-142.res.spectrum.com (192.60.1.142)
+Host is up (0.0020s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      Dropbear sshd 2017.75 (protocol 2.0)
+443/tcp open  ssl/http BusyBox http 1.19.4
+| ssl-cert: Subject: commonName=PU431FTH20005630/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Not valid before: 2020-01-07T14:00:30
+|_Not valid after:  2038-01-19T03:14:07
+|_http-title: Site doesn't have a title (text/html).
+|_ssl-date: TLS randomness does not represent time
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for syn-192-060-001-143.res.spectrum.com (192.60.1.143)
+Host is up (0.0020s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      Dropbear sshd 2017.75 (protocol 2.0)
+443/tcp open  ssl/http BusyBox http 1.19.4
+|_http-title: Site doesn't have a title (text/html).
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=PU431FTH20006886/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Not valid before: 2020-01-07T14:03:15
+|_Not valid after:  2038-01-19T03:14:07
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for syn-192-060-001-145.res.spectrum.com (192.60.1.145)
+Host is up (0.0020s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      Dropbear sshd 2017.75 (protocol 2.0)
+443/tcp open  ssl/http BusyBox http 1.19.4
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=PU431FTH20007309/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Not valid before: 2020-01-07T14:04:11
+|_Not valid after:  2038-01-19T03:14:07
+|_http-title: Site doesn't have a title (text/html).
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for syn-192-060-001-146.res.spectrum.com (192.60.1.146)
+Host is up (0.0018s latency).
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+53/tcp open  domain  Unbound
+
+Nmap scan report for syn-192-060-001-148.res.spectrum.com (192.60.1.148)
+Host is up (0.0017s latency).
+All 1000 scanned ports on syn-192-060-001-148.res.spectrum.com (192.60.1.148) are in ignored states.
+Not shown: 1000 closed tcp ports (conn-refused)
+
+Nmap scan report for syn-192-060-001-149.res.spectrum.com (192.60.1.149)
+Host is up (0.0018s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT    STATE SERVICE  VERSION
+22/tcp  open  ssh      Dropbear sshd 2017.75 (protocol 2.0)
+443/tcp open  ssl/http BusyBox http 1.19.4
+| ssl-cert: Subject: commonName=PU431FTH20007055/organizationName=Fortinet/stateOrProvinceName=California/countryName=US
+| Not valid before: 2020-01-07T14:03:37
+|_Not valid after:  2038-01-19T03:14:07
+|_http-title: Site doesn't have a title (text/html).
+|_ssl-date: TLS randomness does not represent time
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for syn-192-060-001-151.res.spectrum.com (192.60.1.151)
+Host is up (0.0018s latency).
+Not shown: 995 closed tcp ports (conn-refused)
+PORT     STATE SERVICE    VERSION
+80/tcp   open  http       Debut embedded httpd 1.30 (Brother/HP printer http admin)
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-server-header: debut/1.30
+443/tcp  open  ssl/http   Debut embedded httpd 1.30 (Brother/HP printer http admin)
+| ssl-cert: Subject: commonName=BRNB422004FC771.local
+| Not valid before: 2000-01-01T00:00:00
+|_Not valid after:  2110-12-31T23:59:59
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-server-header: debut/1.30
+|_ssl-date: TLS randomness does not represent time
+515/tcp  open  printer
+631/tcp  open  http       Debut embedded httpd 1.30 (Brother/HP printer http admin)
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-server-header: debut/1.30
+9100/tcp open  jetdirect?
+Service Info: Device: printer
+
+Nmap scan report for syn-192-060-001-153.res.spectrum.com (192.60.1.153)
+Host is up (0.0016s latency).
+Not shown: 990 closed tcp ports (conn-refused)
+PORT      STATE SERVICE     VERSION
+80/tcp    open  http        nginx
+|_http-title: Did not follow redirect to http://syn-192-060-001-153.res.spectrum.com:5000/
+139/tcp   open  netbios-ssn Samba smbd 4
+443/tcp   open  ssl/http    nginx
+| tls-alpn: 
+|_  http/1.1
+|_http-title: Did not follow redirect to https://syn-192-060-001-153.res.spectrum.com:5001/
+|_ssl-date: TLS randomness does not represent time
+| tls-nextprotoneg: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=synology/organizationName=Synology Inc./countryName=TW
+| Subject Alternative Name: DNS:synology
+| Not valid before: 2025-09-24T09:24:51
+|_Not valid after:  2026-09-25T09:24:51
+445/tcp   open  netbios-ssn Samba smbd 4
+548/tcp   open  afp         Netatalk 3.1.8 (name: DiskStation; protocol 3.4)
+| afp-serverinfo: 
+|   Server Flags: 
+|     Flags hex: 0x8f79
+|     Super Client: true
+|     UUIDs: true
+|     UTF8 Server Name: true
+|     Open Directory: true
+|     Reconnect: false
+|     Server Notifications: true
+|     TCP/IP: true
+|     Server Signature: true
+|     Server Messages: true
+|     Password Saving Prohibited: false
+|     Password Changing: false
+|     Copy File: true
+|   Server Name: DiskStation
+|   Machine Type: Netatalk3.1.8
+|   AFP Versions: AFP2.2, AFPX03, AFP3.1, AFP3.2, AFP3.3, AFP3.4
+|   UAMs: DHX2, DHCAST128
+|   Server Signature: c9db7a7d596f90b1ac64aea56527d3d7
+|   Network Addresses: 
+|     192.60.1.153
+|_  UTF8 Server Name: DiskStation
+5000/tcp  open  http        nginx
+|_http-title: DiskStation&nbsp;-&nbsp;Synology&nbsp;DiskStation
+| http-robots.txt: 1 disallowed entry 
+|_/
+5001/tcp  open  ssl/http    nginx
+|_http-title: 400 The plain HTTP request was sent to HTTPS port
+| http-robots.txt: 1 disallowed entry 
+|_/
+| tls-nextprotoneg: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=synology/organizationName=Synology Inc./countryName=TW
+| Subject Alternative Name: DNS:synology
+| Not valid before: 2025-09-24T09:24:51
+|_Not valid after:  2026-09-25T09:24:51
+| tls-alpn: 
+|_  http/1.1
+|_ssl-date: TLS randomness does not represent time
+49160/tcp open  upnp        Portable SDK for UPnP devices 1.6.21 (Linux 2.6.32.12; UPnP 1.0)
+50001/tcp open  upnp        Portable SDK for UPnP devices 1.6.21 (Linux 2.6.32.12; UPnP 1.0)
+50002/tcp open  http        lighttpd 1.4.39
+|_http-title: 404 - Not Found
+|_http-server-header: lighttpd/1.4.39
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel:2.6.32.12
+
+Host script results:
+| smb2-time: 
+|   date: 2026-03-26T14:54:00
+|_  start_date: N/A
+|_clock-skew: -4s
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+|_nbstat: NetBIOS name: DISKSTATION, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+
+Post-scan script results:
+| clock-skew: 
+|   -2h39m57s: 
+|     192.60.1.121 (syn-192-060-001-121.res.spectrum.com)
+|_    192.60.1.120 (syn-192-060-001-120.res.spectrum.com)
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Mar 26 22:56:45 2026 -- 15 IP addresses (15 hosts up) scanned in 347.05 seconds
