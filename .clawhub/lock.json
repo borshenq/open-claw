@@ -1,21 +1,13 @@
 {
   "version": 1,
   "skills": {
-    "weather": {
-      "version": "1.0.0",
-      "installedAt": 1774147953202
-    },
-    "agent-browser-clawdbot": {
-      "version": "0.1.0",
-      "installedAt": 1774148522012
-    },
-    "searxng": {
+    "news-aggregator": {
       "version": "1.0.3",
-      "installedAt": 1774243863127
+      "installedAt": 1774829249869
     },
-    "weather-pro": {
-      "version": "1.4.0",
-      "installedAt": 1774361420020
+    "bbc-news": {
+      "version": "1.0.0",
+      "installedAt": 1774829298254
     }
   }
 }
