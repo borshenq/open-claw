@@ -1,7 +1,7 @@
 model_list:
   - model_name: flora-brain-hq # PC GPU (最強大)
     litellm_params:
-      model: ollama/qwen3.5:latest
+      model: ollama/gemma3:4b
       api_base: "http://192.60.1.110:11434/v1"
       provider: "ollama"
       api_key: "not-needed"
@@ -19,9 +19,9 @@ model_list:
       id: "redmi-phone"
       priority: 3
 
-  - model_name: flora-brain-hq-nas # NAS CPU (最穩定 - 1b)
+  - model_name: flora-brain-hq-nas # NAS CPU (最穩定 - 4b)
     litellm_params:
-      model: ollama/llama3.2:1b
+      model: ollama/gemma3:4b
       api_base: "http://host.docker.internal:11434/v1"
       provider: "ollama"
       api_key: "not-needed"
