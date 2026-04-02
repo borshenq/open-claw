@@ -53,27 +53,6 @@ services:
       - openclaw-net
     restart: always
 
-  # --- OpenClaw 智能代理 (Node 20 穩定版) ---
-  openclaw:
-    build:
-      context: .
-      dockerfile: Dockerfile.openclaw
-    container_name: openclaw
-    restart: always
-    volumes:
-      - ./.openclaw:/root/.openclaw:rw
-      - ./memory:/home/node/.openclaw/workspace/memory:rw
-    environment:
-      - NODE_ENV=production
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-
 networks:
   openclaw-net:
     driver: bridge
