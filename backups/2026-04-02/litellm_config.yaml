@@ -1,0 +1,44 @@
+model_list:
+  - model_name: flora-brain-hq
+    litellm_params:
+      model: ollama/qwen2.5:3b
+      api_base: http://192.60.1.110:11434
+    model_info:
+      id: pc-cpu-fast
+      priority: 1
+
+  - model_name: flora-brain-hq-nas
+    litellm_params:
+      model: ollama/llama3.2:1b
+      api_base: http://host.docker.internal:11434
+    model_info:
+      id: nas-cpu
+      priority: 5
+
+  - model_name: gemini-1.5-flash
+    litellm_params:
+      model: gemini/gemini-1.5-flash
+      api_key: LLAMA_API_KEY # Placeholder, will use GEMINI_API_KEY from .env
+    model_info:
+      id: gemini-flash-1.5
+      priority: 2
+
+  - model_name: gemini-3-flash-preview
+    litellm_params:
+      model: gemini/gemini-3-flash-preview
+      api_key: LLAMA_API_KEY # Placeholder, will use GEMINI_API_KEY from .env
+    model_info:
+      id: gemini-3-flash-preview
+      priority: 3
+
+  - model_name: gemini-3.1-flash-lite-preview
+    litellm_params:
+      model: gemini/gemini-3.1-flash-lite-preview
+      api_key: LLAMA_API_KEY # Placeholder, will use GEMINI_API_KEY from .env
+    model_info:
+      id: gemini-3.1-flash-lite-preview
+      priority: 4
+
+router_settings:
+  routing_strategy: latency-based-routing
+  enable_pre_call_checks: true
