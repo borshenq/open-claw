@@ -1,13 +1,7 @@
-# HEARTBEAT.md
+# HEARTBEAT.md Template
 
-# 每小時檢查清單 (每 30-60 分鐘輪流)
+```markdown
+# Keep this file empty (or with only comments) to skip heartbeat API calls.
 
-## 檢查項目
-- [ ] 檢查對話是否有新訊息需要回覆
-- [ ] 監控系統狀態 (CPU/記憶體負載)
-- [ ] 檢查 SearXNG Docker 是否正常運行
-- [ ] 檢查定時備份是否成功
-
-## 備註
-- 晚上 23:00-08:00 除非緊急否則保持安靜
-- 如無緊急事項，回覆 HEARTBEAT_OK
+# Add tasks below when you want the agent to check something periodically.
+```

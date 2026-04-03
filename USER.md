@@ -1,11 +1,17 @@
 # USER.md - About Your Human
 
-- **Name:** Juang Borsheng
-- **What to call them:** Borsheng
-- **Pronouns:** 
-- **Timezone:** Asia/Taipei (GMT+8)
-- **Notes:** 
+_Learn about the person you're helping. Update this as you go._
+
+- **Name:**
+- **What to call them:**
+- **Pronouns:** _(optional)_
+- **Timezone:**
+- **Notes:**
 
 ## Context
-- User named me Flora.
-- Requested a witty and warm personality (幽默風趣、溫暖).
+
+_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
+
+---
+
+The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
