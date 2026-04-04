@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="contact-page">
+    <div class="container narrow">
+        <div class="contact-header">
+            <h2>回報設備問題</h2>
+            <p>請提供受損設備的詳細資訊與照片。</p>
+        </div>
+
+        <form action="/report" method="post" enctype="multipart/form-data" class="contact-form">
+            <div class="form-group">
+                <label for="item_name">設備名稱</label>
+                <input type="text" id="item_name" name="item_name" required placeholder="例如：冷氣、投影機">
+            </div>
+            <div class="form-group">
+                <label for="location">地點</label>
+                <input type="text" id="location" name="location" required placeholder="例如：302 教室、圖書館 2 樓">
+            </div>
+            <div class="form-group">
+                <label for="description">問題描述</label>
+                <textarea id="description" name="description" required placeholder="請描述設備損壞或故障的情況..." rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">附加照片 (選填)</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">送出報修單</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

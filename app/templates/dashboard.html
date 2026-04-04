@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="dashboard-page">
+    <div class="container">
+        <div class="contact-header">
+            <h2>報修儀表板</h2>
+            <p>追蹤所有目前與過去的設備維修申請。</p>
+        </div>
+
+        <div class="table-container">
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>編號</th>
+                        <th>日期</th>
+                        <th>設備</th>
+                        <th>地點</th>
+                        <th>狀態</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for report in reports %}
+                    <tr>
+                        <td>#{{ report.id }}</td>
+                        <td>{{ report.created_at.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ report.item_name }}</td>
+                        <td>{{ report.location }}</td>
+                        <td>
+                            <span class="status-badge status-{{ report.status.lower().replace(' ', '-') }}">
+                                {{ '處理中' if report.status == 'Pending' else '維修中' if report.status == 'In Progress' else '已完成' if report.status == 'Completed' else report.status }}
+                            </span>
+                        </td>
+                        <td><a href="/report/{{ report.id }}" class="btn-text">查看 &rarr;</a></td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">查無報修紀錄。</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

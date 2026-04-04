@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>高效的 <span>校園維護</span> 追蹤系統。</h1>
+        <p>立即回報設備問題、上傳照片並即時追蹤維修進度。</p>
+        <div class="cta-group">
+            <a href="/report" class="btn btn-primary">回報問題</a>
+            <a href="/dashboard" class="btn btn-secondary">查看狀態</a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container grid">
+        <div class="card">
+            <h3>簡易報修</h3>
+            <p>填寫簡易表單並附上受損設備的照片。</p>
+        </div>
+        <div class="card">
+            <h3>影像證據</h3>
+            <p>上傳圖片協助維修人員在到達前了解問題。</p>
+        </div>
+        <div class="card">
+            <h3>進度更新</h3>
+            <p>從待處理到完成，即時獲取報修進度的反饋與回應。</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

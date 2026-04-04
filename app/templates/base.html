@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - 校園報修系統</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="logo">校園<span>修繕</span></a>
+                <ul class="nav-links">
+                    <li><a href="/">首頁</a></li>
+                    {% if user %}
+                    <li><a href="/report">報修申請</a></li>
+                    <li><a href="/dashboard">儀表板</a></li>
+                    <li class="user-info">
+                        <strong>{{ user.username }}</strong> ({{ '報修者' if user.role == 'Reporter' else '技術員' if user.role == 'Technician' else user.role }})
+                        <a href="/logout" class="logout-link">登出</a>
+                    </li>
+                    {% else %}
+                    <li><a href="/login">登入</a></li>
+                    <li><a href="/register">註冊</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 校園設備報修系統。專業設備維護與追蹤系統。</p>
+        </div>
+    </footer>
+</body>
+</html>
