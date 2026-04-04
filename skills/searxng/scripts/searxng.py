@@ -75,7 +75,7 @@ def search_searxng(
         return data
         
     except httpx.HTTPError as e:
-        console.print(f"[red]Error connecting to SearXNG:[/red] {e}", file=sys.stderr)
+        console.print(f"[red]Error connecting to SearXNG:[/red] {e}")
         return {"error": str(e), "results": []}
     except Exception as e:
         console.print(f"[red]Unexpected error:[/red] {e}", file=sys.stderr)
