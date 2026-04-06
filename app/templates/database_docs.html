@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .db-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Inter', sans-serif; color: #2d3748; }
+    .table-section { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 35px; margin-bottom: 40px; border-top: 5px solid #3182ce; }
+    .table-section h2 { color: #2c5282; border-bottom: 2px solid #edf2f7; padding-bottom: 15px; margin-bottom: 20px; }
+    .db-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    .db-table th { background: #f7fafc; text-align: left; padding: 12px; border-bottom: 2px solid #e2e8f0; color: #4a5568; }
+    .db-table td { padding: 12px; border-bottom: 1px solid #edf2f7; color: #2d3748; font-size: 0.95rem; }
+    .db-table tr:last-child td { border-bottom: none; }
+    .pk { color: #e53e3e; font-weight: bold; font-size: 0.8rem; border: 1px solid #feb2b2; padding: 1px 4px; border-radius: 3px; background: #fff5f5; }
+    .fk { color: #3182ce; font-weight: bold; font-size: 0.8rem; border: 1px solid #bee3f8; padding: 1px 4px; border-radius: 3px; background: #ebf8ff; }
+</style>
+
+<div class="db-docs">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h1 style="font-size: 2.5rem; color: #1a202c;">📊 資料庫結構說明</h1>
+        <p style="color: #718096;">Database Schema & ER Model</p>
+    </div>
+
+    <!-- 用戶表 -->
+    <div class="table-section">
+        <h2><i>👥</i> Users (用戶資料表)</h2>
+        <p>存取系統所有角色的基本資料與認證資訊。</p>
+        <table class="db-table">
+            <thead>
+                <tr><th>欄位名</th><th>類型</th><th>約束</th><th>說明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>id</td><td>Integer</td><td><span class="pk">PK</span></td><td>自增主鍵</td></tr>
+                <tr><td>username</td><td>String(50)</td><td>Unique, Index</td><td>唯一登入名稱</td></tr>
+                <tr><td>email</td><td>String(100)</td><td>Unique, Index</td><td>聯絡信箱</td></tr>
+                <tr><td>hashed_password</td><td>String(255)</td><td>NotNull</td><td>密碼雜湊</td></tr>
+                <tr><td>role</td><td>String(20)</td><td>Default: "Reporter"</td><td>角色身份：Reporter, Technician</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 報修表 -->
+    <div class="table-section">
+        <h2><i>🛠️</i> Repair Requests (報修申請表)</h2>
+        <p>核心業務表，記錄全校所有報修項目。</p>
+        <table class="db-table">
+            <thead>
+                <tr><th>欄位名</th><th>類型</th><th>約束</th><th>說明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>id</td><td>Integer</td><td><span class="pk">PK</span></td><td>自增主鍵</td></tr>
+                <tr><td>item_name</td><td>String(100)</td><td>NotNull</td><td>損壞設備名稱</td></tr>
+                <tr><td>location</td><td>String(100)</td><td>NotNull</td><td>損壞位置</td></tr>
+                <tr><td>description</td><td>Text</td><td>NotNull</td><td>詳細問題描述</td></tr>
+                <tr><td>image_url</td><td>String(255)</td><td>Nullable</td><td>上傳照片之路徑</td></tr>
+                <tr><td>status</td><td>String(20)</td><td>Default: "Pending"</td><td>目前狀態：Pending, In Progress, Completed</td></tr>
+                <tr><td>created_at</td><td>DateTime</td><td>AutoNow</td><td>申請建立時間</td></tr>
+                <tr><td>reporter_id</td><td>Integer</td><td><span class="fk">FK</span></td><td>關聯到 Users.id</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 日誌表 -->
+    <div class="table-section">
+        <h2><i>📝</i> Repair Logs (維修日誌表)</h2>
+        <p>追蹤單一報修項目的多次更新紀錄。</p>
+        <table class="db-table">
+            <thead>
+                <tr><th>欄位名</th><th>類型</th><th>約束</th><th>說明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>id</td><td>Integer</td><td><span class="pk">PK</span></td><td>自增主鍵</td></tr>
+                <tr><td>request_id</td><td>Integer</td><td><span class="fk">FK</span></td><td>關聯到 RepairRequests.id</td></tr>
+                <tr><td>note</td><td>Text</td><td>NotNull</td><td>維修動作或進度說明</td></tr>
+                <tr><td>updated_at</td><td>DateTime</td><td>AutoNow</td><td>日誌建立時間</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

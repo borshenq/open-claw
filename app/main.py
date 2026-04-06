@@ -22,7 +22,7 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 # Create database tables
 models.Base.metadata.create_all(bind=database.engine)
 
-app = FastAPI()
+app = FastAPI(docs_url="/api/docs", redoc_url="/api/redoc")
 
 # Mount static files and templates
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
@@ -34,6 +34,30 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 async def home(request: Request, current_user: models.User = Depends(auth.get_current_user)):
     return templates.TemplateResponse(
         request=request, name="index.html", context={"title": "首頁", "user": current_user}
+    )
+
+@app.get("/docs", response_class=HTMLResponse)
+async def docs(request: Request, current_user: models.User = Depends(auth.get_current_user)):
+    return templates.TemplateResponse(
+        request=request, name="docs.html", context={"title": "說明文件", "user": current_user}
+    )
+
+@app.get("/architecture", response_class=HTMLResponse)
+async def architecture(request: Request, current_user: models.User = Depends(auth.get_current_user)):
+    return templates.TemplateResponse(
+        request=request, name="architecture.html", context={"title": "系統架構", "user": current_user}
+    )
+
+@app.get("/database", response_class=HTMLResponse)
+async def database_docs(request: Request, current_user: models.User = Depends(auth.get_current_user)):
+    return templates.TemplateResponse(
+        request=request, name="database_docs.html", context={"title": "資料庫說明", "user": current_user}
+    )
+
+@app.get("/maintenance", response_class=HTMLResponse)
+async def maintenance(request: Request, current_user: models.User = Depends(auth.get_current_user)):
+    return templates.TemplateResponse(
+        request=request, name="maintenance.html", context={"title": "系統維護", "user": current_user}
     )
 
 # --- Auth Routes ---
