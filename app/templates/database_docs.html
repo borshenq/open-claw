@@ -2,77 +2,81 @@
 
 {% block content %}
 <style>
-    .db-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Inter', sans-serif; color: #2d3748; }
-    .table-section { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 35px; margin-bottom: 40px; border-top: 5px solid #3182ce; }
-    .table-section h2 { color: #2c5282; border-bottom: 2px solid #edf2f7; padding-bottom: 15px; margin-bottom: 20px; }
-    .db-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    .db-table th { background: #f7fafc; text-align: left; padding: 12px; border-bottom: 2px solid #e2e8f0; color: #4a5568; }
-    .db-table td { padding: 12px; border-bottom: 1px solid #edf2f7; color: #2d3748; font-size: 0.95rem; }
-    .db-table tr:last-child td { border-bottom: none; }
-    .pk { color: #e53e3e; font-weight: bold; font-size: 0.8rem; border: 1px solid #feb2b2; padding: 1px 4px; border-radius: 3px; background: #fff5f5; }
-    .fk { color: #3182ce; font-weight: bold; font-size: 0.8rem; border: 1px solid #bee3f8; padding: 1px 4px; border-radius: 3px; background: #ebf8ff; }
+    .db-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Quicksand', sans-serif; color: var(--text-color); }
+    .table-section { background: white; border-radius: var(--radius-lg); box-shadow: var(--card-shadow); padding: 40px; margin-bottom: 40px; border: 4px solid #fff; transition: transform 0.3s; }
+    .table-section:hover { transform: translateY(-5px); }
+    .table-section h2 { color: var(--primary-color); border-bottom: 4px dashed var(--accent-color); padding-bottom: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; font-size: 2rem; font-weight: 800; }
+    
+    .db-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; margin-top: 15px; }
+    .db-table th { background: #fff9f0; text-align: left; padding: 15px; border-bottom: 3px solid var(--accent-color); color: var(--text-color); font-weight: 800; border-radius: 1rem 1rem 0 0; }
+    .db-table td { padding: 15px; background: #fff; border-bottom: 2px solid #f0f0f0; color: var(--text-light); font-weight: 600; font-size: 1rem; }
+    .db-table tr:hover td { background: #fffdfa; }
+    
+    .pk { color: #fff; font-weight: 900; font-size: 0.8rem; padding: 4px 10px; border-radius: 1rem; background: var(--primary-color); box-shadow: 0 3px 0 var(--primary-hover); }
+    .fk { color: #fff; font-weight: 900; font-size: 0.8rem; padding: 4px 10px; border-radius: 1rem; background: var(--secondary-color); box-shadow: 0 3px 0 #8bc6db; }
 </style>
 
 <div class="db-docs">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 2.5rem; color: #1a202c;">📊 資料庫結構說明</h1>
-        <p style="color: #718096;">Database Schema & ER Model</p>
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h1 style="font-size: 3.5rem; color: var(--text-color); font-weight: 900;">📊 資料大倉庫</h1>
+        <p style="color: var(--text-light); font-size: 1.4rem; font-weight: 600;">基地裡所有的資料都乖乖地住在這些小房間裡喔！🏠</p>
     </div>
 
     <!-- 用戶表 -->
     <div class="table-section">
-        <h2><i>👥</i> Users (用戶資料表)</h2>
-        <p>存取系統所有角色的基本資料與認證資訊。</p>
+        <h2><i>👥</i> 小隊員與英雄名單 (Users)</h2>
+        <p style="font-weight: 600; color: var(--text-light);">這裡記錄了所有可以使用基地的人！</p>
         <table class="db-table">
             <thead>
-                <tr><th>欄位名</th><th>類型</th><th>約束</th><th>說明</th></tr>
+                <tr><th>小標籤</th><th>種類</th><th>小秘密</th><th>說明</th></tr>
             </thead>
             <tbody>
-                <tr><td>id</td><td>Integer</td><td><span class="pk">PK</span></td><td>自增主鍵</td></tr>
-                <tr><td>username</td><td>String(50)</td><td>Unique, Index</td><td>唯一登入名稱</td></tr>
-                <tr><td>email</td><td>String(100)</td><td>Unique, Index</td><td>聯絡信箱</td></tr>
-                <tr><td>hashed_password</td><td>String(255)</td><td>NotNull</td><td>密碼雜湊</td></tr>
-                <tr><td>role</td><td>String(20)</td><td>Default: "Reporter"</td><td>角色身份：Reporter, Technician</td></tr>
+                <tr><td>id</td><td>數字</td><td><span class="pk">鑰匙</span></td><td>每個人的專屬編號</td></tr>
+                <tr><td>username</td><td>文字</td><td>唯一</td><td>登入時要輸入的名字</td></tr>
+                <tr><td>email</td><td>文字</td><td>唯一</td><td>聯絡你的小信箱</td></tr>
+                <tr><td>hashed_password</td><td>文字</td><td>秘密</td><td>變過魔術的密碼</td></tr>
+                <tr><td>role</td><td>文字</td><td>預設</td><td>你是小隊員還是小英雄？</td></tr>
             </tbody>
         </table>
     </div>
 
     <!-- 報修表 -->
     <div class="table-section">
-        <h2><i>🛠️</i> Repair Requests (報修申請表)</h2>
-        <p>核心業務表，記錄全校所有報修項目。</p>
+        <h2><i>🛠️</i> 報修小清單 (Repair Requests)</h2>
+        <p style="font-weight: 600; color: var(--text-light);">最重要的一張表，紀錄哪裡需要英雄去救援！</p>
         <table class="db-table">
             <thead>
-                <tr><th>欄位名</th><th>類型</th><th>約束</th><th>說明</th></tr>
+                <tr><th>小標籤</th><th>種類</th><th>小秘密</th><th>說明</th></tr>
             </thead>
             <tbody>
-                <tr><td>id</td><td>Integer</td><td><span class="pk">PK</span></td><td>自增主鍵</td></tr>
-                <tr><td>item_name</td><td>String(100)</td><td>NotNull</td><td>損壞設備名稱</td></tr>
-                <tr><td>location</td><td>String(100)</td><td>NotNull</td><td>損壞位置</td></tr>
-                <tr><td>description</td><td>Text</td><td>NotNull</td><td>詳細問題描述</td></tr>
-                <tr><td>image_url</td><td>String(255)</td><td>Nullable</td><td>上傳照片之路徑</td></tr>
-                <tr><td>status</td><td>String(20)</td><td>Default: "Pending"</td><td>目前狀態：Pending, In Progress, Completed</td></tr>
-                <tr><td>created_at</td><td>DateTime</td><td>AutoNow</td><td>申請建立時間</td></tr>
-                <tr><td>reporter_id</td><td>Integer</td><td><span class="fk">FK</span></td><td>關聯到 Users.id</td></tr>
+                <tr><td>id</td><td>數字</td><td><span class="pk">鑰匙</span></td><td>這張報修單的編號</td></tr>
+                <tr><td>item_name</td><td>文字</td><td>必填</td><td>壞掉的是什麼？</td></tr>
+                <tr><td>location</td><td>文字</td><td>必填</td><td>在哪個神祕角落壞掉的？</td></tr>
+                <tr><td>description</td><td>文字</td><td>必填</td><td>詳細說說發生什麼事</td></tr>
+                <tr><td>image_url</td><td>文字</td><td>可選</td><td>壞掉東西的小照片</td></tr>
+                <tr><td>status</td><td>文字</td><td>預設</td><td>現在英雄處理到哪了？</td></tr>
+                <tr><td>created_at</td><td>時間</td><td>自動</td><td>你發出訊號的時間</td></tr>
+                <tr><td>reporter_id</td><td>數字</td><td><span class="fk">連線</span></td><td>是哪個小隊員發出的？</td></tr>
             </tbody>
         </table>
     </div>
 
     <!-- 日誌表 -->
     <div class="table-section">
-        <h2><i>📝</i> Repair Logs (維修日誌表)</h2>
-        <p>追蹤單一報修項目的多次更新紀錄。</p>
+        <h2><i>📝</i> 英雄維修日記 (Repair Logs)</h2>
+        <p style="font-weight: 600; color: var(--text-light);">紀錄維修小英雄每次努力的過程！</p>
         <table class="db-table">
             <thead>
-                <tr><th>欄位名</th><th>類型</th><th>約束</th><th>說明</th></tr>
+                <tr><th>小標籤</th><th>種類</th><th>小秘密</th><th>說明</th></tr>
             </thead>
             <tbody>
-                <tr><td>id</td><td>Integer</td><td><span class="pk">PK</span></td><td>自增主鍵</td></tr>
-                <tr><td>request_id</td><td>Integer</td><td><span class="fk">FK</span></td><td>關聯到 RepairRequests.id</td></tr>
-                <tr><td>note</td><td>Text</td><td>NotNull</td><td>維修動作或進度說明</td></tr>
-                <tr><td>updated_at</td><td>DateTime</td><td>AutoNow</td><td>日誌建立時間</td></tr>
+                <tr><td>id</td><td>數字</td><td><span class="pk">鑰匙</span></td><td>這則日記的編號</td></tr>
+                <tr><td>request_id</td><td>數字</td><td><span class="fk">連線</span></td><td>是為了哪張報修單寫的？</td></tr>
+                <tr><td>note</td><td>文字</td><td>必填</td><td>英雄今天做了什麼事</td></tr>
+                <tr><td>updated_at</td><td>時間</td><td>自動</td><td>英雄寫日記的時間</td></tr>
             </tbody>
         </table>
     </div>
 </div>
+
 {% endblock %}

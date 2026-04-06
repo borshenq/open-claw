@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - 校園報修系統</title>
     <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="container">
-                <a href="/" class="logo">校園<span>修繕</span></a>
+                <a href="/" class="logo">🏫 <span>校園修繕</span> ✨</a>
                 <ul class="nav-links">
-                    <li><a href="/">首頁</a></li>
-                    <li><a href="/docs">操作手冊</a></li>
-                    <li><a href="/architecture">系統架構</a></li>
-                    <li><a href="/database">資料庫說明</a></li>
-                    <li><a href="/maintenance">維護說明</a></li>
+                    <li><a href="/">🏠 首頁</a></li>
+                    <li><a href="/docs">📚 說明</a></li>
+                    <li><a href="/architecture">🏗️ 架構</a></li>
+                    <li><a href="/database">💾 資料庫</a></li>
+                    <li><a href="/maintenance">🔧 維護</a></li>
                     {% if user %}
-                    <li><a href="/report">報修申請</a></li>
-                    <li><a href="/dashboard">儀表板</a></li>
+                    <li><a href="/report">🛠️ 報修</a></li>
+                    <li><a href="/dashboard">📊 儀表板</a></li>
                     <li class="user-info">
-                        <strong>{{ user.username }}</strong> ({{ '報修者' if user.role == 'Reporter' else '技術員' if user.role == 'Technician' else user.role }})
-                        <a href="/logout" class="logout-link">登出</a>
+                        <strong>👤 {{ user.username }}</strong>
+                        <a href="/logout" class="logout-link">👋 登出</a>
                     </li>
                     {% else %}
                     <li><a href="/login">登入</a></li>

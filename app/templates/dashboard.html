@@ -4,20 +4,20 @@
 <section class="dashboard-page">
     <div class="container">
         <div class="contact-header">
-            <h2>報修儀表板</h2>
-            <p>追蹤所有目前與過去的設備維修申請。</p>
+            <h2>📊 我的維修小進度</h2>
+            <p>來看看我們派出的維修英雄們工作到哪裡了！加油！✨</p>
         </div>
 
         <div class="table-container">
             <table class="report-table">
                 <thead>
                     <tr>
-                        <th>編號</th>
-                        <th>日期</th>
-                        <th>設備</th>
-                        <th>地點</th>
-                        <th>狀態</th>
-                        <th>操作</th>
+                        <th>🆔 編號</th>
+                        <th>📅 報修日期</th>
+                        <th>🧸 哪樣東西</th>
+                        <th>📍 在哪裡呢</th>
+                        <th>🌟 狀態</th>
+                        <th>⚙️ 看一看</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,14 +29,14 @@
                         <td>{{ report.location }}</td>
                         <td>
                             <span class="status-badge status-{{ report.status.lower().replace(' ', '-') }}">
-                                {{ '處理中' if report.status == 'Pending' else '維修中' if report.status == 'In Progress' else '已完成' if report.status == 'Completed' else report.status }}
+                                {{ '⏳ 排隊中' if report.status == 'Pending' else '🛠️ 維修中' if report.status == 'In Progress' else '✅ 修好啦' if report.status == 'Completed' else report.status }}
                             </span>
                         </td>
-                        <td><a href="/report/{{ report.id }}" class="btn-text">查看 &rarr;</a></td>
+                        <td><a href="/report/{{ report.id }}" class="btn-text">詳細內容 &rarr;</a></td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="6" class="text-center">查無報修紀錄。</td>
+                        <td colspan="6" class="text-center">目前沒有報修喔！大家都很乖乖愛護公物！💖</td>
                     </tr>
                     {% endfor %}
                 </tbody>

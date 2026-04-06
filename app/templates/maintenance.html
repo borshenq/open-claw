@@ -2,76 +2,86 @@
 
 {% block content %}
 <style>
-    .maintenance-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Inter', sans-serif; color: #2d3748; }
-    .maint-section { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 35px; margin-bottom: 30px; border-left: 5px solid #f6ad55; }
-    .maint-section h2 { color: #dd6b20; border-bottom: 2px solid #fffaf0; padding-bottom: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-    .cmd-box { background: #1a202c; color: #a0aec0; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace; margin: 15px 0; position: relative; }
-    .cmd-box code { color: #63b3ed; }
-    .cmd-comment { color: #718096; font-style: italic; }
-    .warning-box { background: #fff5f5; border: 1px solid #feb2b2; color: #c53030; padding: 15px; border-radius: 8px; margin: 15px 0; }
+    .maintenance-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Quicksand', sans-serif; color: var(--text-color); }
+    .maint-section { background: white; border-radius: var(--radius-lg); box-shadow: var(--card-shadow); padding: 40px; margin-bottom: 40px; border: 4px solid #fff; transition: transform 0.3s; }
+    .maint-section:hover { transform: translateY(-5px); }
+    .maint-section h2 { color: var(--primary-color); border-bottom: 4px dashed var(--accent-color); padding-bottom: 15px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; font-size: 2rem; font-weight: 800; }
+    
+    .cmd-box { background: #4a4a4a; color: #fff; padding: 25px; border-radius: 2rem; font-family: 'Courier New', monospace; margin: 20px 0; position: relative; box-shadow: inset 0 5px 15px rgba(0,0,0,0.2); }
+    .cmd-box code { color: #ff9aa2; font-weight: 800; font-size: 1.1rem; }
+    .cmd-comment { color: #b2e2f2; font-style: italic; opacity: 0.8; display: block; margin-bottom: 10px; }
+    
+    .warning-box { background: #fff5f5; border: 3px solid #ff6b6b; color: #ff6b6b; padding: 25px; border-radius: 2rem; margin: 20px 0; font-weight: 700; position: relative; }
+    .warning-box::before { content: '⚠️'; position: absolute; top: -15px; left: 20px; font-size: 2rem; background: #fff; padding: 0 10px; }
+    
+    .info-list { padding-left: 20px; color: var(--text-light); font-weight: 600; line-height: 2; }
+    .info-list strong { color: var(--text-color); }
 </style>
 
 <div class="maintenance-docs">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 2.5rem; color: #2d3748;">⚙️ 系統維護操作說明</h1>
-        <p style="color: #718096;">System Maintenance & Operations Guide</p>
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h1 style="font-size: 3.5rem; color: var(--text-color); font-weight: 900;">⚙️ 基地維護小筆記</h1>
+        <p style="color: var(--text-light); font-size: 1.4rem; font-weight: 600;">身為基地的守護者，這些操作秘訣一定要記下來喔！✨</p>
     </div>
 
     <!-- 服務管理 -->
     <div class="maint-section">
-        <h2><i>🚀</i> 服務啟動與管理</h2>
-        <p>本系統使用 Uvicorn 作為 ASGI 伺服器，建議在虛擬環境 (venv) 中執行。</p>
+        <h2><i>🚀</i> 讓基地動起來</h2>
+        <p style="font-weight: 600;">就像啟動飛船一樣，我們需要透過指令讓基地開始運作！</p>
         
         <div class="cmd-box">
-            <span class="cmd-comment"># 進入虛擬環境並啟動服務 (開發模式)</span><br>
-            <code>source venv/bin/activate</code><br>
+            <span class="cmd-comment"># 喚醒虛擬環境 (準備出發)</span>
+            <code>source venv/bin/activate</code><br><br>
+            <span class="cmd-comment"># 啟動基地引擎 (開發模式)</span>
             <code>uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload</code>
         </div>
         
         <div class="cmd-box">
-            <span class="cmd-comment"># 背景執行並記錄日誌 (生產模式)</span><br>
+            <span class="cmd-comment"># 讓基地進入自動導航 (生產模式)</span>
             <code>nohup python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000 > server.log 2>&1 &</code>
         </div>
     </div>
 
     <!-- 資料庫維護 -->
-    <div class="maint-section" style="border-left-color: #4299e1;">
-        <h2><i>💾</i> 資料庫維護與重置</h2>
-        <p>系統使用 SQLite 檔案型資料庫 <code>sql_app.db</code>。維護時請注意以下操作：</p>
+    <div class="maint-section">
+        <h2><i>💾</i> 保管好資料保險箱</h2>
+        <p style="font-weight: 600;">資料庫 <code>sql_app.db</code> 是我們最重要的寶物，要小心照顧！</p>
         
         <div class="warning-box">
-            <strong>⚠️ 注意：</strong> 刪除資料庫檔案將導致所有報修資料、用戶資料永久遺失，請務必先進行備份。
+            <strong>超級注意：</strong> 如果弄丟了資料庫檔案，所有小隊員的報修紀錄都會消失！請一定要先影印備份喔！
         </div>
 
-        <ul>
-            <li><strong>備份：</strong> 直接複製 <code>sql_app.db</code> 檔案至安全位置即可。</li>
-            <li><strong>重置並重新生成測試資料：</strong> 若需清空資料並恢復初始測試狀態，請執行：</li>
+        <ul class="info-list">
+            <li><strong>影印備份：</strong> 直接把 <code>sql_app.db</code> 複製一份到安全的地方就好囉。</li>
+            <li><strong>重新打掃基地：</strong> 如果想清空所有資料重新開始，請執行：</li>
         </ul>
         <div class="cmd-box">
+            <span class="cmd-comment"># 搬走舊箱子，裝進新資料</span>
             <code>rm sql_app.db</code><br>
             <code>python3 seed_data.py</code>
         </div>
     </div>
 
     <!-- 檔案管理 -->
-    <div class="maint-section" style="border-left-color: #48bb78;">
-        <h2><i>📁</i> 檔案與上傳管理</h2>
-        <p>所有報修上傳的照片均儲存於靜態目錄中：</p>
-        <ul>
-            <li><strong>儲存路徑：</strong> <code>app/static/uploads/</code></li>
-            <li><strong>自動命名：</strong> 系統會自動將檔案重新命名為 UUID (隨機編碼)，以防檔名衝突。</li>
-            <li><strong>空間維護：</strong> 若空間不足，管理員可手動清理該資料夾下的舊照片。</li>
+    <div class="maint-section">
+        <h2><i>📁</i> 整理照片小抽屜</h2>
+        <p style="font-weight: 600;">小隊員們拍的照片都放在這個神秘資料夾裡：</p>
+        <ul class="info-list">
+            <li><strong>抽屜位置：</strong> <code>app/static/uploads/</code></li>
+            <li><strong>自動變身：</strong> 系統會給照片取一個像 <code>UUID</code> 的怪名字，這樣就不會搞混了。</li>
+            <li><strong>大掃除：</strong> 如果抽屜太擠了，可以手動把裡面的舊照片清掉喔！🧹</li>
         </ul>
     </div>
 
     <!-- 依賴更新 -->
-    <div class="maint-section" style="border-left-color: #9f7aea;">
-        <h2><i>📦</i> 套件與依賴更新</h2>
-        <p>當系統需要更新或搬移環境時，請確保依賴項完整：</p>
+    <div class="maint-section">
+        <h2><i>📦</i> 更新工具包</h2>
+        <p style="font-weight: 600;">如果基地需要更多新功能，記得更新你的工具包：</p>
         <div class="cmd-box">
-            <span class="cmd-comment"># 更新依賴清單</span><br>
+            <span class="cmd-comment"># 安裝所有必備小零件</span>
             <code>pip install -r requirements.txt</code>
         </div>
     </div>
 </div>
+
 {% endblock %}

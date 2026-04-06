@@ -2,67 +2,74 @@
 
 {% block content %}
 <style>
-    .tech-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Inter', sans-serif; color: #2d3748; }
-    .section { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); padding: 35px; margin-bottom: 30px; border-top: 5px solid #4a5568; }
-    .section h2 { color: #2c5282; border-bottom: 2px solid #edf2f7; padding-bottom: 15px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-    .tech-stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .stack-item { background: #f7fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; }
-    .stack-item strong { display: block; color: #2d3748; font-size: 1.1rem; margin-bottom: 8px; }
-    .stack-item span { color: #718096; font-size: 0.9rem; }
-    .flow-box { background: #ebf8ff; border: 1px dashed #3182ce; padding: 20px; border-radius: 8px; margin-top: 15px; }
-    code { background: #edf2f7; padding: 2px 6px; border-radius: 4px; font-family: 'Courier New', Courier, monospace; color: #e53e3e; }
+    .tech-docs { max-width: 1000px; margin: 0 auto; padding: 40px 20px; font-family: 'Quicksand', sans-serif; color: var(--text-color); }
+    .section { background: white; border-radius: var(--radius-lg); box-shadow: var(--card-shadow); padding: 40px; margin-bottom: 40px; border: 4px solid #fff; transition: transform 0.3s; }
+    .section:hover { transform: translateY(-5px); }
+    .section h2 { color: var(--primary-color); border-bottom: 4px dashed var(--accent-color); padding-bottom: 15px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; font-size: 2rem; font-weight: 800; }
+    
+    .tech-stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+    .stack-item { background: #fff9f0; padding: 25px; border-radius: 2rem; border: 3px solid #fff; box-shadow: var(--card-shadow); text-align: center; }
+    .stack-item strong { display: block; color: var(--primary-color); font-size: 1.3rem; margin-bottom: 10px; font-weight: 800; }
+    .stack-item span { color: var(--text-light); font-size: 1rem; font-weight: 600; line-height: 1.5; }
+    
+    .flow-box { background: var(--secondary-color); border: 3px dashed #fff; padding: 30px; border-radius: 2rem; margin-top: 20px; color: #2c5282; font-weight: 600; }
+    code { background: var(--accent-color); padding: 4px 10px; border-radius: 1rem; font-family: 'Courier New', monospace; color: #d6336c; font-weight: 800; }
+    
+    .lifecycle-step { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .step-dot { width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%; flex-shrink: 0; }
 </style>
 
 <div class="tech-docs">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h1 style="font-size: 2.5rem; color: #1a202c;">🏗️ 系統架構說明</h1>
-        <p style="color: #718096;">System Architecture Overview</p>
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h1 style="font-size: 3.5rem; color: var(--text-color); font-weight: 900;">🏗️ 秘密基地的蓋法</h1>
+        <p style="color: var(--text-light); font-size: 1.4rem; font-weight: 600;">想知道我們是用什麼魔法蓋好這個基地的嗎？✨</p>
     </div>
 
     <!-- 核心架構 -->
     <div class="section">
-        <h2><i>🛠️</i> 核心技術棧 (Tech Stack)</h2>
+        <h2><i>🛠️</i> 我們的秘密工具箱 (Tech Stack)</h2>
         <div class="tech-stack">
             <div class="stack-item">
                 <strong>FastAPI</strong>
-                <span>高效能 Python 非同步框架，負責處理所有 API 請求與路由分發。</span>
+                <span>像噴射機一樣快的引擎，負責處理大家傳過來的訊息！🚀</span>
             </div>
             <div class="stack-item">
                 <strong>SQLAlchemy</strong>
-                <span>工業級 Python ORM，負責與資料庫進行物件對映與安全查詢。</span>
+                <span>超厲害的圖書管理員，負責把資料整齊地存在保險箱裡。📚</span>
             </div>
             <div class="stack-item">
                 <strong>Uvicorn</strong>
-                <span>基於 uvloop 的 ASGI 伺服器，支撐極低延遲的連線回應。</span>
+                <span>24小時不休息的警衛叔叔，守護著基地的連線。🛡️</span>
             </div>
             <div class="stack-item">
                 <strong>Jinja2</strong>
-                <span>強大的模板引擎，負責後端渲染動態 HTML 頁面。</span>
+                <span>神奇的畫筆，負責把冷冰冰的資料畫成可愛的網頁！🎨</span>
             </div>
         </div>
     </div>
 
     <!-- 安全認證 -->
     <div class="section">
-        <h2><i>🔒</i> 安全與認證機制</h2>
-        <ul>
-            <li><strong>密碼加密：</strong> 採用 <code>bcrypt</code> 演算法進行強力雜湊運算，確保資料庫遭洩漏時原始密碼不外流。</li>
-            <li><strong>JWT 身份驗證：</strong> 使用 JSON Web Tokens 簽發令牌，有效期限設定為 24 小時。</li>
-            <li><strong>Cookie 安全傳輸：</strong> 令牌儲存於 <code>HttpOnly</code> 屬性的 Cookies 中，有效防範 XSS (跨站腳本攻擊) 竊取 Session。</li>
-            <li><strong>角色型權限控制 (RBAC)：</strong> 系統嚴格區分 <code>Reporter</code> 與 <code>Technician</code> 權限。非技術員無法存取狀態修改與維修日誌寫入 API。</li>
+        <h2><i>🔒</i> 安全小鎖頭與通行證</h2>
+        <ul style="padding-left: 20px; font-weight: 600; color: var(--text-light); line-height: 2;">
+            <li><strong>密碼大變身：</strong> 你的密碼會用 <code>bcrypt</code> 魔法變成一串誰都看不懂的亂碼，超級安全！</li>
+            <li><strong>JWT 魔法通行證：</strong> 登入後你會拿到一張隱形的通行證，24小時內進出基地都不用重新輸入密碼。</li>
+            <li><strong>餅乾保險箱 (Cookies)：</strong> 通行證會藏在 <code>HttpOnly</code> 的小餅乾裡，壞人搶不走喔！🍪</li>
+            <li><strong>英雄分隊 (RBAC)：</strong> 我們把大家分成「報修小隊員」跟「維修小英雄」，只有英雄才能動維修工具！</li>
         </ul>
     </div>
 
     <!-- 請求生命週期 -->
     <div class="section">
-        <h2><i>🔄</i> 請求處理生命週期</h2>
+        <h2><i>🔄</i> 訊息是怎麼跑的呢？</h2>
         <div class="flow-box">
-            <strong>1. 用戶請求 (Request)：</strong> 瀏覽器發送 HTTP 請求。 <br>
-            <strong>2. 依賴注入 (Dependency Injection)：</strong> FastAPI 自動獲取資料庫連線並驗證 JWT Cookies。 <br>
-            <strong>3. 業務邏輯 (Controller)：</strong> `main.py` 處理報修邏輯或更新日誌。 <br>
-            <strong>4. 模板渲染 (Rendering)：</strong> Jinja2 將處理後的資料填入 HTML 模板。 <br>
-            <strong>5. 回應 (Response)：</strong> 回傳完整的 HTML 頁面或執行跳轉 (Redirect)。
+            <div class="lifecycle-step"><div class="step-dot"></div> 1. 你按下了按鈕 (發送請求)</div>
+            <div class="lifecycle-step"><div class="step-dot"></div> 2. 警衛叔叔檢查你的通行證 (身份驗證)</div>
+            <div class="lifecycle-step"><div class="step-dot"></div> 3. 圖書管理員幫你找資料或存檔 (處理邏輯)</div>
+            <div class="lifecycle-step"><div class="step-dot"></div> 4. 神奇畫筆把網頁畫好 (模板渲染)</div>
+            <div class="lifecycle-step"><div class="step-dot"></div> 5. 把畫好的網頁送回你面前！(回應)</div>
         </div>
     </div>
 </div>
+
 {% endblock %}
