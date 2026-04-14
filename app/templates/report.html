@@ -17,6 +17,27 @@
                 <label for="location">地點</label>
                 <input type="text" id="location" name="location" required placeholder="例如：302 教室、圖書館 2 樓">
             </div>
+            <div class="form-group-row" style="display: flex; gap: 15px; margin-bottom: 20px;">
+                <div class="form-group" style="flex: 1;">
+                    <label for="priority">優先等級</label>
+                    <select id="priority" name="priority" required>
+                        <option value="Low">低 (Low)</option>
+                        <option value="Normal" selected>普通 (Normal)</option>
+                        <option value="High">高 (High)</option>
+                        <option value="Urgent">緊急 (Urgent)</option>
+                    </select>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label for="category">報修類別</label>
+                    <select id="category" name="category" required>
+                        <option value="General" selected>一般修繕</option>
+                        <option value="Electrical">電力系統</option>
+                        <option value="Plumbing">給排水系統</option>
+                        <option value="Furniture">辦公傢俱</option>
+                        <option value="IT">資訊設備</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="description">問題描述</label>
                 <textarea id="description" name="description" required placeholder="請描述設備損壞或故障的情況..." rows="5"></textarea>

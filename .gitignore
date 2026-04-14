@@ -16,3 +16,4 @@ app/static/uploads/*
 # IDEs
 .vscode/
 .idea/
+server.log

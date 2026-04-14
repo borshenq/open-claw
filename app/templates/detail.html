@@ -7,13 +7,23 @@
         <div class="report-main">
             <div class="card detail-card">
                 <div class="detail-header">
-                    <span class="id-badge">#{{ report.id }}</span>
-                    <span class="status-badge status-{{ report.status.lower().replace(' ', '-') }}">
-                        {{ '處理中' if report.status == 'Pending' else '維修中' if report.status == 'In Progress' else '已完成' if report.status == 'Completed' else report.status }}
-                    </span>
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                        <span class="id-badge">#{{ report.id }}</span>
+                        <span class="category-badge">{{ '⚡ 電力' if report.category == 'Electrical' else '🚰 水管' if report.category == 'Plumbing' else '🪑 傢俱' if report.category == 'Furniture' else '💻 資訊' if report.category == 'IT' else '📦 一般' }}</span>
+                        <span class="priority-badge priority-{{ report.priority.lower() }}">
+                            {{ '⚡ 緊急' if report.priority == 'Urgent' else '🔴 高' if report.priority == 'High' else '🔵 普通' if report.priority == 'Normal' else '🟢 低' }}
+                        </span>
+                        <span class="status-badge status-{{ report.status.lower().replace(' ', '-') }}">
+                            {{ '處理中' if report.status == 'Pending' else '維修中' if report.status == 'In Progress' else '已完成' if report.status == 'Completed' else report.status }}
+                        </span>
+                    </div>
                     <h2>{{ report.item_name }}</h2>
-                    <p class="location-text">地點：{{ report.location }}</p>
-                    <p class="date-text">回報時間：{{ report.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <p class="location-text">📍 地點：{{ report.location }}</p>
+                    <p class="date-text">📅 回報時間：{{ report.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <p class="technician-text">👤 負責技師：{{ report.assigned_to.username if report.assigned_to else '尚未指派' }}</p>
+                    {% if report.estimated_completion_at %}
+                    <p class="eta-text" style="color: #e67e22; font-weight: bold;">⏳ 預計完成：{{ report.estimated_completion_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    {% endif %}
                 </div>
 
                 <div class="detail-description">
@@ -21,15 +31,51 @@
                     <p>{{ report.description }}</p>
                 </div>
 
+                {% if report.status == 'Completed' and report.rating %}
+                <div class="feedback-display" style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #f1c40f;">
+                    <h3>🌟 使用者評價</h3>
+                    <div class="rating-stars" style="color: #f1c40f; font-size: 1.2em; margin-bottom: 8px;">
+                        {% for i in range(report.rating) %}★{% endfor %}{% for i in range(5 - report.rating) %}☆{% endfor %}
+                        <span style="color: #666; font-size: 0.8em; margin-left: 10px;">({{ report.rating }} / 5)</span>
+                    </div>
+                    <p><strong>回饋意見：</strong> {{ report.feedback }}</p>
+                </div>
+                {% endif %}
+
                 {% if report.image_url %}
-                <div class="detail-image">
+                <div class="detail-image" style="margin-top: 20px;">
                     <h3>影像證據</h3>
-                    <img src="{{ report.image_url }}" alt="損害證據">
+                    <img src="{{ report.image_url }}" alt="損害證據" style="max-width: 100%; border-radius: 8px;">
                 </div>
                 {% endif %}
             </div>
 
+            {% if user.role == 'Reporter' and report.status == 'Completed' and not report.rating %}
+            <div class="card feedback-card" style="border: 2px solid #f1c40f;">
+                <h3>💖 滿意度回饋</h3>
+                <p>這張單據已修復完成！請給予我們的維修英雄一點鼓勵與建議吧！</p>
+                <form action="/report/{{ report.id }}/feedback" method="post" style="margin-top: 15px;">
+                    <div class="form-group">
+                        <label for="rating">滿意度評分 (1-5)</label>
+                        <select name="rating" id="rating" required>
+                            <option value="5">★★★★★ (非常滿意)</option>
+                            <option value="4">★★★★☆ (滿意)</option>
+                            <option value="3" selected>★★★☆☆ (普通)</option>
+                            <option value="2">★★☆☆☆ (不滿意)</option>
+                            <option value="1">★☆☆☆☆ (非常不滿意)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback">意見回饋</label>
+                        <textarea name="feedback" id="feedback" required placeholder="寫下您的感想或建議..." rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-block" style="background: #f1c40f; color: #000;">送出評價</button>
+                </form>
+            </div>
+            {% endif %}
+
             <div class="card log-card">
+
                 <h3>維修進度時間軸</h3>
                 <div class="timeline">
                     {% for log in logs %}
@@ -48,6 +94,21 @@
         <div class="report-sidebar">
             {% if user.role == 'Technician' %}
             <div class="card action-card">
+                <h3>指派技術人員</h3>
+                <form action="/report/{{ report.id }}/assign" method="post">
+                    <div class="form-group">
+                        <select name="assigned_to_id" class="form-select">
+                            <option value="">-- 選擇技師 --</option>
+                            {% for tech in technicians %}
+                            <option value="{{ tech.id }}" {% if report.assigned_to_id == tech.id %}selected{% endif %}>{{ tech.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-block">儲存指派</button>
+                </form>
+            </div>
+
+            <div class="card action-card">
                 <h3>新增更新</h3>
                 <form action="/report/{{ report.id }}/log" method="post">
                     <div class="form-group">
@@ -57,6 +118,11 @@
                             <option value="In Progress" {% if report.status == 'In Progress' %}selected{% endif %}>維修中 (In Progress)</option>
                             <option value="Completed" {% if report.status == 'Completed' %}selected{% endif %}>已完成 (Completed)</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="estimated_completion_at">預計完成時間 (選填)</label>
+                        <input type="datetime-local" name="estimated_completion_at" id="estimated_completion_at" 
+                               value="{{ report.estimated_completion_at.strftime('%Y-%m-%dT%H:%M') if report.estimated_completion_at else '' }}">
                     </div>
                     <div class="form-group">
                         <label for="note">進度備註</label>
@@ -75,4 +141,24 @@
         </div>
     </div>
 </section>
+
+<style>
+.category-badge {
+    background: #eee;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    color: #444;
+}
+.priority-badge {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+.priority-urgent { background: #ff4d4d; color: white; }
+.priority-high { background: #ffa333; color: white; }
+.priority-normal { background: #4da3ff; color: white; }
+.priority-low { background: #4dff4d; color: #1a1a1a; }
+</style>
 {% endblock %}
