@@ -1,40 +1,17 @@
 # TOOLS.md - Local Notes
 
-Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+## 🌸 Flora 的工具清單
 
-## What Goes Here
+### 🔍 搜尋引擎 (Search Engines)
+- **SearXNG**: `http://localhost:8888` (Private instance via Docker)
+- **Web Search**: *[Warning: Missing Brave API Key]*
 
-Things like:
+### 🐍 Python 環境
+- **uv binary**: `/home/borsheng/.local/bin/uv` (Used for skill scripts like `searxng.py`)
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+### 🌐 瀏覽器自動化
+- **agent-browser**: Enabled (Alternative for web searching and scraping)
 
-## Examples
-
-```markdown
-### Cameras
-
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### SSH
-
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
-
-## Why Separate?
-
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
-
----
-
-Add whatever helps you do your job. This is your cheat sheet.
+### 📁 工作目錄
+- **Workspace**: `/home/borsheng/.openclaw/workspace`
+- **Memory Logs**: `./memory/YYYY-MM-DD.md`

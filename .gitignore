@@ -1,0 +1,18 @@
+# Secrets
+.config/
+openclaw.json*
+openclaw.log
+
+# Large generated
+flora-memory-repo/
+node_modules/
+.clawhub/
+
+# State/cache
+.openclaw/
+state/
+backups/
+
+# Secrets in config
+**/api_key
+**/secrets*
