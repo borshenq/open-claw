@@ -32,8 +32,22 @@
 - 老師的網教學網站
 - 社團報名系統
 
+### 🌐 網路拓撲記錄（2026-04-30）
+- 從 OpenClaw VM 掃描整個 `192.60.1.0/24` 網段，紀錄於 `memory/network_topology.md`
+- **主機**: Synology DS925+ (`.127`) — AMD Ryzen V1500B / 8GB / 2TB SSD，跑 VMM 虛擬機
+- **虛擬機**: Ubuntu VM (openclaw, `.107`) — OpenClaw Gateway、Redmine、FastAPI、SearXNG
+- **路由器**: Ubiquiti UniFi Gateway (`.254`)
+- **交換器**: D-Link × 10 台、Cisco × 1、Siemon × 3
+- **虛擬化**: VMware ESXi 主機 (`.7`)
+- **NAS × 3**: DS925+、FS RackStation (`.5`)、w2 RackStation (`.6`)
+- **印表機**: Brother MFC-L2715DW × 2、FUJIFILM ApeosPrint C325 dw、HP
+- **UPS**: 台達 Delta × 5 台
+- **攝影機**: Axis × 2
+- **SNMP**: community `public` 從此 VM 無法連通
+- **環境**: 學校/環教中心機房（DNS: tp.edu.tw），備註「南港廠裡」
+
 ### 🧹 記憶清理記錄
 - **2026-04-29**: 整理並刪除了 2026/4/15~4/28 期間大量無內容的 Session Log（因連線超時/空互動產生的記錄，佔 150KB+，無實際對話價值）。濃縮長期記憶至此檔。
 
 ---
-*最後更新日期: 2026-04-29*
+*最後更新日期: 2026-04-30*
