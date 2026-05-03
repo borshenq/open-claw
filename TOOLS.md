@@ -3,7 +3,7 @@
 ## 🌸 Flora 的工具清單
 
 ### 🔍 搜尋引擎 (Search Engines)
-- **SearXNG**: `http://localhost:8888` (Private instance via Docker)
+- **SearXNG**: `http://localhost:8888` (Private instance via Docker, SEARXNG_URL env var)
 - **Web Search**: *[Warning: Missing Brave API Key]*
 
 ### 🐍 Python 環境
