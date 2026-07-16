@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-TW">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>大屯國小網路拓撲 — DTPS Network Topology</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: #f8fafc;
+    color: #172033;
+    font: 14px/1.4 ui-sans-serif, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f172a; color: #e2e8f0; }
+  }
+  main { max-width: 1300px; margin: 20px auto; padding: 0 20px; text-align: center; }
+  svg { width: 100%; height: auto; display: block; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 650; margin: 10px 0 4px; }
+  .subtitle { font-size: 13px; margin: 0 0 8px; color: #64748b; }
+  @media (prefers-color-scheme: dark) {
+    .subtitle { color: #94a3b8; }
+  }
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 10px 0; font-size: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid #64748b; flex-shrink: 0; }
+</style>
+<body>
+<main>
+<h1>🏫 大屯國小 — 完整網路拓撲 + Switch Port 對應</h1>
+<p class="subtitle">DTPS Network Topology · SNMP SnmpPublic@TPC · 2026-06-17 · Flora 🌸</p>
+<div class="legend">
+  <span class="legend-item"><span class="legend-swatch" style="background:#bfdbfe"></span> FortiGate/WAN</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#c7d2fe"></span> 核心交換器</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#bbf7d0"></span> PoE 接入交換</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#fde68a"></span> FortiAP</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#99f6e4"></span> 伺服器/NAS</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#fed7aa"></span> IoT/其他</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#a78bfa"></span> VLAN/SSID</span>
+  <span class="legend-item"><span class="legend-swatch" style="background:#e2e8f0"></span> 有線終端</span>
+  <span class="legend-item">─ SNMP ✅</span>
+  <span class="legend-item">- - CAPWAP</span>
+</div>
+
+<svg viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#64748b" />
+    </marker>
+    <marker id="a2" markerWidth="6" markerHeight="4" refX="6" refY="2" orient="auto">
+      <path d="M0,0 L6,2 L0,4" fill="#64748b" />
+    </marker>
+  </defs>
+  <style>
+    /* LIGHT MODE COLORS - SVG uses these directly */
+    .lbl { fill:#172033; font-family:ui-sans-serif,system-ui,sans-serif; font-size:12px; font-weight:600; }
+    .sm { fill:#5b6475; font-family:ui-sans-serif,system-ui,sans-serif; font-size:10px; }
+    .ac { fill:#a78bfa; font-weight:600; }
+    .bdr { stroke:#64748b; stroke-width:1; }
+    .edg { stroke:#64748b; stroke-width:1.5; fill:none; }
+    .edgt { stroke:#64748b; stroke-width:1; fill:none; stroke-dasharray:4 3; }
+    .zon { fill:rgba(203,213,225,0.2); stroke:#64748b; stroke-width:1; stroke-dasharray:6 5; }
+    .pb { fill:rgba(203,213,225,0.35); stroke:#64748b; stroke-width:0.5; rx:5; ry:5; }
+  </style>
+
+  <!-- SVG背景 -->
+  <rect width="1200" height="1200" fill="#f8fafc" />
+
+  <!-- WAN -->
+  <ellipse cx="600" cy="24" rx="160" ry="16" fill="#fde68a" class="bdr" />
+  <text x="600" y="28" class="lbl" text-anchor="middle" font-size="12">☁ WAN (163.21.221.124/25 — 教育部連線)</text>
+  <path d="M600,40 L600,70" class="edg" marker-end="url(#arrow)" />
+
+  <!-- FortiGate -->
+  <rect x="440" y="75" width="320" height="52" rx="5" ry="5" fill="#bfdbfe" class="bdr" />
+  <text x="600" y="94" class="lbl" text-anchor="middle" font-size="13">FortiGate-500E · 192.60.1.254</text>
+  <text x="600" y="109" class="sm" text-anchor="middle">DTPS-FG5H0ETB19909536 · FortiOS 7.0.17 ✅ SNMP</text>
+  <text x="600" y="122" class="sm" text-anchor="middle">📡 CAPWAP port8:5247 · 16 FortiAPs 管控中</text>
+  <path d="M600,127 L600,160" class="edg" marker-end="url(#arrow)" />
+
+  <!-- Core Switch -->
+  <rect x="410" y="165" width="380" height="48" rx="5" ry="5" fill="#c7d2fe" class="bdr" />
+  <text x="600" y="184" class="lbl" text-anchor="middle">🔀 Aruba 8100 核心交換器 (.245) · 48x SFP+ 10G ✅SNMP</text>
+  <text x="600" y="198" class="sm" text-anchor="middle">Port1→FS(.5) · Port5→FS備 · Port29→.254主 · Port31→.254備</text>
+  <text x="600" y="210" class="sm" text-anchor="middle">Port17→HP.17+NVR.167+UPS.249 · Port27→OpenClaw.153+Konica.97+Huawei.131</text>
+
+  <!-- Downlinks -->
+  <path d="M400,213 L400,250" class="edg" />
+  <path d="M480,213 L480,250" class="edg" />
+  <path d="M560,213 L560,250" class="edg" />
+  <path d="M640,213 L640,250" class="edg" />
+  <path d="M720,213 L720,250" class="edg" />
+  <path d="M800,213 L800,250" class="edg" />
+  <text x="400" y="248" class="sm ac" text-anchor="middle" font-size="9">Port23→.246</text>
+  <text x="480" y="248" class="sm ac" text-anchor="middle" font-size="9">Port27→.247</text>
+  <text x="560" y="248" class="sm ac" text-anchor="middle" font-size="9">Port25→.248</text>
+  <text x="640" y="248" class="sm ac" text-anchor="middle" font-size="9">Port21→FortiAP</text>
+  <text x="720" y="248" class="sm ac" text-anchor="middle" font-size="9">Port17→終端</text>
+  <text x="800" y="248" class="sm ac" text-anchor="middle" font-size="9">Port27→3050</text>
+
+  <!-- FortiAP Zone -->
+  <rect x="30" y="260" width="260" height="160" rx="8" class="zon" />
+  <text x="160" y="282" class="sm ac" text-anchor="middle" font-size="11">📡 FortiAP 群 (CAPWAP→.254:5247)</text>
+  <path d="M560,213 Q160,230 160,262" class="edgt" marker-end="url(#a2)" />
+  <text x="160" y="304" class="sm" text-anchor="middle">📍 A1大辦公室 .117  ·  A2校長室 .140</text>
+  <text x="160" y="322" class="sm" text-anchor="middle">📍 4年級 .141  ·  5年級 .142  ·  3年級 .137</text>
+  <text x="160" y="340" class="sm" text-anchor="middle">📍 2年級 .156  ·  1年級 .170  ·  圖書館 .143</text>
+  <text x="160" y="358" class="sm" text-anchor="middle">📍 自然教室 .149  ·  資源班 .122</text>
+  <text x="160" y="376" class="sm" text-anchor="middle">📍 舊多元 .102  ·  新多元 .145</text>
+  <text x="160" y="394" class="sm" text-anchor="middle">📍 B1警衛室 .155  ·  B2廚房 .148</text>
+  <text x="160" y="412" class="sm" text-anchor="middle">📍 幼兒園 .146  ·  會計室 .169</text>
+
+  <!-- .246 -->
+  <rect x="330" y="260" width="160" height="38" rx="5" ry="5" fill="#bbf7d0" class="bdr" />
+  <text x="410" y="278" class="sm" text-anchor="middle" font-weight="600">Aruba 2930F (.246) ✅</text>
+  <text x="410" y="293" class="sm" text-anchor="middle" font-size="10">Uplink Port27→核心Port23</text>
+  <rect x="315" y="310" width="190" height="155" rx="6" class="pb" />
+  <text x="410" y="330" class="sm ac" text-anchor="middle" font-size="11">📌 Port Map (.246)</text>
+  <text x="410" y="346" class="sm" text-anchor="middle" font-size="9">P4: Intel .136  ·  P5: Brother .151</text>
+  <text x="410" y="362" class="sm" text-anchor="middle" font-size="9">P12: 會計室 .169  ·  P13: AP 自然 .149</text>
+  <text x="410" y="378" class="sm" text-anchor="middle" font-size="9">P14: AP 5年級 .142</text>
+  <text x="410" y="394" class="sm" text-anchor="middle" font-size="9">P15: 幼兒園 .146</text>
+  <text x="410" y="410" class="sm" text-anchor="middle" font-size="9">P16: AP 4年級 .141</text>
+  <text x="410" y="426" class="sm" text-anchor="middle" font-size="9">P17: 校長室 .140</text>
+  <text x="410" y="442" class="sm" text-anchor="middle" font-size="9">P20: IoT/辦公</text>
+  <text x="410" y="460" class="sm" text-anchor="middle" font-size="10" font-weight="600">⬆ Port27→核心Port23</text>
+
+  <!-- .247 -->
+  <rect x="540" y="260" width="160" height="38" rx="5" ry="5" fill="#bbf7d0" class="bdr" />
+  <text x="620" y="278" class="sm" text-anchor="middle" font-weight="600">Aruba 2930F (.247) ✅</text>
+  <text x="620" y="293" class="sm" text-anchor="middle" font-size="10">Uplink Port28→核心Port27</text>
+  <rect x="525" y="310" width="190" height="155" rx="6" class="pb" />
+  <text x="620" y="330" class="sm ac" text-anchor="middle" font-size="11">📌 Port Map (.247)</text>
+  <text x="620" y="346" class="sm" text-anchor="middle" font-size="9">P5: AP 圖書館 .143</text>
+  <text x="620" y="362" class="sm" text-anchor="middle" font-size="9">P7: ASUS .111/.116</text>
+  <text x="620" y="378" class="sm" text-anchor="middle" font-size="9">P9: Cisco .200 / Konica .98</text>
+  <text x="620" y="394" class="sm" text-anchor="middle" font-size="9">P10: Intel .105  ·  P12: Apple .158</text>
+  <text x="620" y="410" class="sm" text-anchor="middle" font-size="9">P13: AP A1 .117</text>
+  <text x="620" y="426" class="sm" text-anchor="middle" font-size="9">P18/19: AP 3年級 .137</text>
+  <text x="620" y="442" class="sm" text-anchor="middle" font-size="9">P26: ↔ Aruba .251</text>
+  <text x="620" y="460" class="sm" text-anchor="middle" font-size="10" font-weight="600">⬆ Port28→核心Port27</text>
+
+  <!-- .248 -->
+  <rect x="750" y="260" width="160" height="38" rx="5" ry="5" fill="#bbf7d0" class="bdr" />
+  <text x="830" y="278" class="sm" text-anchor="middle" font-weight="600">Aruba 2930F (.248) ✅</text>
+  <text x="830" y="293" class="sm" text-anchor="middle" font-size="10">Uplink Port25→核心Port25</text>
+  <rect x="735" y="310" width="190" height="155" rx="6" class="pb" />
+  <text x="830" y="330" class="sm ac" text-anchor="middle" font-size="11">📌 Port Map (.248)</text>
+  <text x="830" y="346" class="sm" text-anchor="middle" font-size="9">P11: Fujifilm .240</text>
+  <text x="830" y="362" class="sm" text-anchor="middle" font-size="9">P12: Brother .138</text>
+  <text x="830" y="378" class="sm" text-anchor="middle" font-size="9">P13: AP 2年級 .156</text>
+  <text x="830" y="394" class="sm" text-anchor="middle" font-size="9">P14: AP 1年級 .170</text>
+  <text x="830" y="410" class="sm" text-anchor="middle" font-size="9">P16: 幼兒園</text>
+  <text x="830" y="460" class="sm" text-anchor="middle" font-size="10" font-weight="600">⬆ Port25→核心Port25</text>
+
+  <!-- .251 and .252 -->
+  <path d="M540,298 L570,490" class="edg" marker-end="url(#arrow)" />
+  <path d="M660,298 L630,490" class="edg" marker-end="url(#arrow)" />
+
+  <rect x="330" y="480" width="160" height="38" rx="5" ry="5" fill="#bbf7d0" class="bdr" />
+  <text x="410" y="498" class="sm" text-anchor="middle" font-weight="600">Aruba 2930F (.251) ✅</text>
+  <text x="410" y="513" class="sm" text-anchor="middle" font-size="10">Uplink Port28→核心</text>
+  <rect x="315" y="530" width="190" height="140" rx="6" class="pb" />
+  <text x="410" y="550" class="sm ac" text-anchor="middle" font-size="11">📌 Port Map (.251)</text>
+  <text x="410" y="566" class="sm" text-anchor="middle" font-size="9">P1: HP .31  ·  P2: HP .32</text>
+  <text x="410" y="582" class="sm" text-anchor="middle" font-size="9">P6: Intel .148  ·  P10: Intel .105</text>
+  <text x="410" y="598" class="sm" text-anchor="middle" font-size="9">P11: ASUS .116  ·  P12: Konica .99</text>
+  <text x="410" y="614" class="sm" text-anchor="middle" font-size="9">P18: ASUS .188 IoT</text>
+  <text x="410" y="648" class="sm" text-anchor="middle" font-size="10" font-weight="600">⬆ Port28→核心</text>
+
+  <rect x="525" y="480" width="160" height="38" rx="5" ry="5" fill="#bbf7d0" class="bdr" />
+  <text x="605" y="498" class="sm" text-anchor="middle" font-weight="600">Cisco Catal. (.252) ✅</text>
+  <text x="605" y="513" class="sm" text-anchor="middle" font-size="10">Uplink Port32→核心</text>
+  <rect x="510" y="530" width="190" height="140" rx="6" class="pb" />
+  <text x="605" y="550" class="sm ac" text-anchor="middle" font-size="11">📌 Port Map (.252)</text>
+  <text x="605" y="566" class="sm" text-anchor="middle" font-size="9">P1: ASUS .30  ·  P8: Konica .97</text>
+  <text x="605" y="582" class="sm" text-anchor="middle" font-size="9">P11: Apple .158  ·  P12: Huawei .131</text>
+  <text x="605" y="598" class="sm" text-anchor="middle" font-size="9">P15: Intel .154</text>
+  <text x="605" y="648" class="sm" text-anchor="middle" font-size="10" font-weight="600">⬆ Port32→核心</text>
+
+  <!-- Terminal Devices -->
+  <rect x="30" y="710" width="1140" height="190" rx="8" class="zon" />
+  <text x="600" y="732" class="sm ac" text-anchor="middle" font-size="11">💻 有線終端設備</text>
+  <text x="600" y="755" class="sm" text-anchor="middle">【 NAS/伺服器 】Synology DS925+ .127  ·  FS .5  ·  w2 .6  ·  VMware ESXi .7</text>
+  <text x="600" y="775" class="sm" text-anchor="middle">【 虛擬主機 】OpenClaw VM .153  ·  FortiGate VM  ·  Redmine  ·  FastAPI  ·  SearXNG</text>
+  <text x="600" y="800" class="sm" text-anchor="middle">【 印表機 ×9 】Brother MFC .138/.151  ·  Fujifilm C325 .240  ·  Konica ×3</text>
+  <text x="600" y="825" class="sm" text-anchor="middle">【 監控 & 環境 】Axis 攝影 .42/.125  ·  GeoVision NVR .167  ·  Delta UPS .249</text>
+  <text x="600" y="850" class="sm" text-anchor="middle">【 辦公電腦 ×12+ 】Intel/ASUS: .105 .111 .116 .120 .148 .152 .155</text>
+  <text x="600" y="870" class="sm" text-anchor="middle">【 離線電腦 】.20 .129 .134 .135 .136 .144 .147 .150 .154 .168</text>
+  <text x="600" y="890" class="sm" text-anchor="middle">【 IoT/其他 】Huawei .131  ·  Apple .158</text>
+
+  <!-- SSID -->
+  <rect x="30" y="920" width="1140" height="90" rx="8" class="zon" />
+  <text x="600" y="942" class="sm ac" text-anchor="middle" font-size="11">📱 SSID / VLAN 結構</text>
+  <text x="600" y="962" class="sm" text-anchor="middle">🏫 staff (192.60.1.x)  ·  📚 class (192.168.0.x)  ·  📱 st (192.168.50.x)</text>
+  <text x="600" y="982" class="sm" text-anchor="middle">🌐 iTaiwan (10.168.201.x)  ·  🎓 TANetRoaming (10.168.202.x)  ·  eduroam (10.168.203.x)</text>
+  <text x="600" y="1000" class="sm" text-anchor="middle">📹 監控 VLAN (192.168.10.x)</text>
+
+  <!-- Wireless Clients -->
+  <rect x="30" y="1030" width="1140" height="90" rx="8" class="zon" />
+  <text x="600" y="1052" class="sm ac" text-anchor="middle" font-size="11">📊 23 台無線用戶端在線</text>
+  <text x="600" y="1072" class="sm" text-anchor="middle">🏫 4年級 16台  ·  5年級 12台  ·  📚 圖書館 13台 (iPad A05~A35)</text>
+  <text x="600" y="1092" class="sm" text-anchor="middle">📍 A1大辦公室 · A2校長室 · 資源班 · 新多元 · 幼兒園 · 會計室</text>
+  <text x="600" y="1110" class="sm" text-anchor="middle">📱 iOS/iPadOS ~50+  ·  💻 macOS ~6  ·  🖥️ Windows ~5  ·  🤖 Android ~2</text>
+
+  <!-- Footer -->
+  <text x="20" y="1150" class="sm" text-anchor="start">🌐 DTPS 大屯國小 · 臺北市北投區</text>
+  <text x="600" y="1150" class="sm" text-anchor="middle">🤖 Flora 🌸 自動產生 · 2026-06-17</text>
+  <text x="1180" y="1150" class="sm" text-anchor="end">SNMP: SnmpPublic@TPC ✅</text>
+</svg>
+</main>
+</body></html>

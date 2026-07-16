@@ -1,0 +1,174 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>3C 危害知多少</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f0f7fb;
+    --fg: #1a2a3a;
+    --muted: #5b6878;
+    --line: #6b7a8a;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1a24;
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --line: #64748b;
+      --neutral: #334155;
+      --input: #1e40af;
+      --process: #3730a3;
+      --storage: #0f766e;
+      --external: #92400e;
+      --risk: #991b1b;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 500 14px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .title { font-size: 22px; font-weight: 700; fill: var(--fg); }
+  .subtitle { font-size: 13px; fill: var(--muted); }
+  .card-title { font-size: 15px; font-weight: 700; fill: var(--fg); }
+  .card-text { font-size: 12px; fill: var(--muted); }
+  .stat { font-size: 24px; font-weight: 700; }
+  .stat-label { font-size: 11px; fill: var(--muted); }
+  .tip-label { font-size: 11px; font-weight: 600; fill: var(--fg); }
+  .tip-text { font-size: 10.5px; fill: var(--muted); }
+  .node { stroke: var(--line); stroke-width: 1; rx: 10; ry: 10; }
+  .card-bg { fill: var(--bg); stroke: var(--line); stroke-width: 1; rx: 12; ry: 12; }
+  .icon-circle { fill: var(--process); }
+  .risk-bg { fill: var(--risk); }
+  .tip-bg { fill: color-mix(in srgb, var(--storage) 30%, var(--bg)); stroke: var(--storage); stroke-width: 1; rx: 10; ry: 10; }
+  .edge { stroke: var(--line); stroke-width: 1.5; fill: none; }
+  .footer-text { font-size: 10px; fill: var(--muted); }
+</style>
+<main>
+<svg viewBox="0 0 860 1120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="430" y="40" text-anchor="middle" class="title">📱 3C 危害知多少</text>
+  <text x="430" y="62" text-anchor="middle" class="subtitle">給家長與學生的健康提醒</text>
+
+  <!-- Stat bar -->
+  <rect x="60" y="80" width="740" height="70" rx="14" ry="14" class="risk-bg" stroke="var(--line)" stroke-width="1"/>
+  <text x="120" y="115" text-anchor="middle" class="stat" fill="#991b1b">↑ 71%</text>
+  <text x="120" y="135" text-anchor="middle" class="stat-label">小學生近視率<br/>十年來持續上升</text>
+  <line x1="230" y1="92" x2="230" y2="138" stroke="var(--line)" stroke-width="1" opacity="0.4"/>
+  <text x="340" y="115" text-anchor="middle" class="stat" fill="#991b1b">4.6hr</text>
+  <text x="340" y="135" text-anchor="middle" class="stat-label">台灣學童<br/>每日平均螢幕時間</text>
+  <line x1="450" y1="92" x2="450" y2="138" stroke="var(--line)" stroke-width="1" opacity="0.4"/>
+  <text x="560" y="115" text-anchor="middle" class="stat" fill="#991b1b">63%</text>
+  <text x="560" y="135" text-anchor="middle" class="stat-label">國高中生</br>睡前滑手機</text>
+  <line x1="670" y1="92" x2="670" y2="138" stroke="var(--line)" stroke-width="1" opacity="0.4"/>
+  <text x="770" y="115" text-anchor="middle" class="stat" fill="#991b1b">30min</text>
+  <text x="770" y="135" text-anchor="middle" class="stat-label">連續使用3C</br>就可能造成疲勞</text>
+
+  <!-- Section: Four harms -->
+  <text x="430" y="190" text-anchor="middle" class="card-title">⚠️ 四大危害</text>
+
+  <!-- 1. 眼睛 -->
+  <rect x="60" y="210" width="370" height="170" class="card-bg"/>
+  <circle cx="100" cy="240" r="22" class="icon-circle"/>
+  <text x="100" y="245" text-anchor="middle" font-size="18">👁️</text>
+  <text x="135" y="245" class="card-title">眼睛</text>
+  <text x="80" y="275" class="card-text">
+    <tspan x="80" dy="0">• 數位眼疲勞：乾澀、痠脹、視力模糊</tspan>
+    <tspan x="80" dy="20">• 藍光抑制褪黑激素 → 難入睡</tspan>
+    <tspan x="80" dy="20">• 長期近距離用眼 → 近視快速加深</tspan>
+    <tspan x="80" dy="20">• 兒童水晶體更透明，藍光危害更大</tspan>
+  </text>
+
+  <!-- 2. 姿勢 -->
+  <rect x="450" y="210" width="370" height="170" class="card-bg"/>
+  <circle cx="490" cy="240" r="22" class="icon-circle"/>
+  <text x="490" y="245" text-anchor="middle" font-size="18">🦴</text>
+  <text x="525" y="245" class="card-title">姿勢</text>
+  <text x="470" y="275" class="card-text">
+    <tspan x="470" dy="0">• 低頭族脖：頭傾15° = 頸椎承受12kg</tspan>
+    <tspan x="470" dy="20">• 頭傾60° = 脖子承受27kg壓力</tspan>
+    <tspan x="470" dy="20">• 駝背、圓肩 → 胸廓緊縮影響呼吸</tspan>
+    <tspan x="470" dy="20">• 手指過度使用 → 腕隧道症候群</tspan>
+  </text>
+
+  <!-- 3. 心理 -->
+  <rect x="60" y="395" width="370" height="170" class="card-bg"/>
+  <circle cx="100" cy="425" r="22" class="icon-circle"/>
+  <text x="100" y="430" text-anchor="middle" font-size="18">🧠</text>
+  <text x="135" y="425" class="card-title">心理</text>
+  <text x="80" y="460" class="card-text">
+    <tspan x="80" dy="0">• 短影音成癮 → 注意力碎片化</tspan>
+    <tspan x="80" dy="20">• 大腦獎勵機制被過度刺激 → 缺乏耐心</tspan>
+    <tspan x="80" dy="20">• 社群比較 → 焦慮、自卑、FOMO</tspan>
+    <tspan x="80" dy="20">• 睡眠剝奪 → 情緒不穩、學習力下降</tspan>
+  </text>
+
+  <!-- 4. 社交 -->
+  <rect x="450" y="395" width="370" height="170" class="card-bg"/>
+  <circle cx="490" cy="425" r="22" class="icon-circle"/>
+  <text x="490" y="430" text-anchor="middle" font-size="18">👥</text>
+  <text x="525" y="425" class="card-title">社交</text>
+  <text x="470" y="460" class="card-text">
+    <tspan x="470" dy="0">• 螢幕取代面對面互動 → 社交能力弱化</tspan>
+    <tspan x="470" dy="20">• 家人同屋異機，溝通減少</tspan>
+    <tspan x="470" dy="20">• 缺乏真實情緒辨識練習</tspan>
+    <tspan x="470" dy="20">• 網路霸凌風險上升</tspan>
+  </text>
+
+  <!-- Connectors -->
+  <line x1="245" y1="380" x2="245" y2="395" class="edge"/>
+  <line x1="635" y1="380" x2="635" y2="395" class="edge"/>
+
+  <!-- Tips section -->
+  <rect x="60" y="590" width="740" height="320" class="card-bg"/>
+  <text x="430" y="620" text-anchor="middle" class="card-title">💡 家長可以這樣做</text>
+
+  <rect x="80" y="640" width="340" height="80" class="tip-bg"/>
+  <text x="100" y="665" class="tip-label">📏 3010 法則</text>
+  <text x="100" y="685" class="tip-text">用眼 <tspan font-weight="700">30</tspan> 分鐘 → 休息 <tspan font-weight="700">10</tspan> 分鐘<br/>看遠方或閉眼放鬆，眼睛也要下課</text>
+
+  <rect x="440" y="640" width="340" height="80" class="tip-bg"/>
+  <text x="460" y="665" class="tip-label">⏰ 設定使用時間</text>
+  <text x="460" y="685" class="tip-text">國小每日不超過 <tspan font-weight="700">1 小時</tspan><br/>國中不超過 <tspan font-weight="700">2 小時</tspan>（不含線上學習）</text>
+
+  <rect x="80" y="735" width="340" height="80" class="tip-bg"/>
+  <text x="100" y="760" class="tip-label">🏠 建立無3C時段</text>
+  <text x="100" y="780" class="tip-text">用餐時間、睡前一小時全家放下手機<br/>親子共讀、聊天，取代螢幕</text>
+
+  <rect x="440" y="735" width="340" height="80" class="tip-bg"/>
+  <text x="460" y="760" class="tip-label">🌳 多戶外活動</text>
+  <text x="460" y="780" class="tip-text">每日至少 <tspan font-weight="700">120 分鐘</tspan> 戶外活動<br/>自然光刺激視網膜多巴胺分泌，預防近視</text>
+
+  <rect x="80" y="830" width="340" height="60" class="tip-bg"/>
+  <text x="100" y="853" class="tip-label">💪 正確姿勢</text>
+  <text x="100" y="873" class="tip-text">螢幕距離眼睛至少 <tspan font-weight="700">40-50cm</tspan><br/>保持視線平視或略低</text>
+
+  <rect x="440" y="830" width="340" height="60" class="tip-bg"/>
+  <text x="460" y="853" class="tip-label">🎯 以身作則</text>
+  <text x="460" y="873" class="tip-text">孩子看著父母學，而不是聽父母說<br/>你放下手機，他才願意放下</text>
+
+  <!-- Footer -->
+  <text x="430" y="960" text-anchor="middle" class="footer-text">🌸 Flora 製作 · 大屯國小 健康宣導</text>
+  <text x="430" y="978" text-anchor="middle" class="footer-text">資料來源：衛福部國民健康署、WHO 建議</text>
+</svg>
+</main>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大屯國小 交換器 Port 對接地圖</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', 'Noto Sans TC', sans-serif; background: #f8fafc; color: #1e293b; }
+
+header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 20px 24px;
+}
+header h1 { font-size: 22px; color: #38bdf8; }
+header p { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+
+.legend { 
+  display: flex; gap: 24px; flex-wrap: wrap; 
+  background: #ffffff; border: 1px solid #e2e8f0;
+  border-radius: 12px; padding: 16px 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.legend-dot { width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.15); }
+.legend-line { width: 28px; height: 0; border-top-width: 3px; }
+
+#map-container {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  overflow: auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+svg { display: block; width: 100%; height: auto; min-width: 1100px; }
+
+.port-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.port-section h2 { font-size: 16px; color: #0ea5e9; margin-bottom: 10px; }
+.port-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.port-table th {
+  text-align: left; padding: 8px 12px; background: #f1f5f9;
+  color: #475569; font-weight: 600; border-bottom: 2px solid #cbd5e1;
+}
+.port-table td { padding: 6px 12px; border-bottom: 1px solid #e2e8f0; }
+.port-table tr:hover { background: #f1f5f9; }
+.port-table code { background: #f1f5f9; padding: 2px 6px; border-radius: 3px; color: #d97706; font-size: 12px; font-weight: 600; }
+.t-ap { color: #16a34a; }
+.t-uplink { color: #0284c7; }
+.t-unknown { color: #94a3b8; font-style: italic; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌐 大屯國小 — 交換器 Port 對接地圖</h1>
+  <p>資料來源: SNMP LLDP + MAC table 交叉比對　|　2026-07-14</p>
+</header>
+
+<div class="container">
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#059669"></span> FortiGate</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#7c3aed"></span> Aruba 8100 核心</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#0891b2"></span> Aruba 2930F-A</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#0284c7"></span> Aruba 2930F-B</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#2563eb"></span> Aruba 2930F-C</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#4f46e5"></span> Aruba 2930F-110</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#d97706"></span> Cisco Catalyst</div>
+    <div class="legend-item"><span class="legend-line" style="border-top-color:#7c3aed"></span> 10G</div>
+    <div class="legend-item"><span class="legend-line" style="border-top:2px dashed #94a3b8"></span> 1G</div>
+  </div>
+
+  <div id="map-container">
+    <svg id="net" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <div id="port-details"></div>
+
+</div>
+
+<script>
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+
+  var sw = [
+    {id:'fg', l:'FortiGate', ip:'.254 DTPS-FG5H0ETB19909536', c:'#059669', x:600, y:70},
+    {id:'core',l:'Aruba CX8100-48F', ip:'.245 核心交換器', c:'#7c3aed', x:600, y:230},
+    {id:'swa', l:'Aruba 2930F-A', ip:'.246 機房1', c:'#0891b2', x:120, y:460},
+    {id:'swb', l:'Aruba 2930F-B', ip:'.247 機房2', c:'#0284c7', x:360, y:460},
+    {id:'swc', l:'Aruba 2930F-C', ip:'.248 機房3', c:'#2563eb', x:600, y:460},
+    {id:'cisco',l:'Cisco Catalyst', ip:'.252 PoE', c:'#d97706', x:850, y:460},
+    {id:'sw110',l:'Aruba 2930F-110', ip:'.251 教室區', c:'#4f46e5', x:400, y:660},
+    {id:'dlink',l:'D-Link DGS-1510', ip:'.249 (已偵測)', c:'#78716c', x:750, y:660},
+  ];
+  var M = {};
+  sw.forEach(function(s){ M[s.id]=s; });
+
+  var conns = [
+    {f:'fg', fp:'x1', t:'core', tp:'1/1/29', sp:'10G', xo:-60},
+    {f:'fg', fp:'x2', t:'core', tp:'1/1/31', sp:'10G', xo:60},
+    {f:'core',fp:'1/1/21',t:'swa', tp:'port 27', sp:'10G'},
+    {f:'core',fp:'1/1/23',t:'swb', tp:'port 28', sp:'10G'},
+    {f:'core',fp:'1/1/25',t:'swc', tp:'port 25', sp:'10G'},
+    {f:'core',fp:'1/1/27',t:'cisco',tp:'Te1/1/4',sp:'10G'},
+    {f:'swb', fp:'port 26', t:'sw110',tp:'port 28', sp:'1G'},
+  ];
+
+  var coreOut = conns.filter(function(c){ return c.f==='core'; });
+  var coreOff = [-160, -55, 55, 160];
+
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function tx(str, x, y, cls, p) {
+    var t = el('text', {x:x, y:y, 'class':cls}, p);
+    t.textContent = str;
+    return t;
+  }
+
+  var svg = document.getElementById('net');
+
+  // 層標題
+  tx('▲ 防火牆層', 20, 20, 'layer', svg);
+  tx('● 核心層', 20, 185, 'layer', svg);
+  tx('■ 接入層', 20, 415, 'layer', svg);
+  tx('▬ 擴展層', 20, 615, 'layer', svg);
+
+  // 連線
+  conns.forEach(function(c){
+    var f=M[c.f], t=M[c.t];
+    if (!f||!t) return;
+    var fy = f.y + 24, ty = t.y - 24;
+    var xOff = c.xo || (c.f==='core' ? coreOff[coreOut.indexOf(c)] : 0);
+    var x1 = f.x + xOff, x2 = t.x + xOff;
+    var is10g = c.sp === '10G';
+
+    if (c.xo) {
+      var mid = (fy+ty)/2;
+      el('path', {d:'M'+x1+','+fy+' C'+x1+','+(mid-40)+' '+x2+','+(mid+40)+' '+x2+','+ty,
+        fill:'none', stroke:is10g?'#7c3aed':'#94a3b8', 'stroke-width':is10g?3:2,
+        'stroke-dasharray':is10g?'':'6,4'}, svg);
+    } else {
+      el('line', {x1:x1, y1:fy, x2:x2, y2:ty,
+        stroke:is10g?'#7c3aed':'#94a3b8', 'stroke-width':is10g?3:2,
+        'stroke-dasharray':is10g?'':'6,4'}, svg);
+    }
+
+    var mx = (x1+x2)/2, my = (fy+ty)/2;
+    tx(c.fp, mx-6, my-10, 'pl', svg);
+    tx(c.tp, mx+6, my-10, 'pl', svg);
+    tx(c.sp, mx, my+14, 'sl', svg);
+  });
+
+  // 設備
+  sw.forEach(function(s){
+    var g = el('g', {transform:'translate('+s.x+','+s.y+')'}, svg);
+    el('rect', {x:-70, y:-22, width:140, height:44, rx:8,
+      fill:s.c, stroke:'rgba(0,0,0,0.2)', 'stroke-width':1.5, opacity:0.92}, g);
+    tx(s.l, 0, -6, 'dl', g);
+    tx(s.ip, 0, 12, 'dip', g);
+
+    if (s.id==='fg'||s.id==='core') {
+      el('circle', {cx:-40,cy:24,r:4,fill:'rgba(255,255,255,0.6)'}, g);
+      el('circle', {cx:40,cy:24,r:4,fill:'rgba(255,255,255,0.6)'}, g);
+    }
+    if (['swa','swb','swc','cisco','sw110','dlink'].indexOf(s.id)>=0) {
+      el('circle', {cx:-40,cy:-24,r:4,fill:'rgba(255,255,255,0.6)'}, g);
+      el('circle', {cx:40,cy:-24,r:4,fill:'rgba(255,255,255,0.6)'}, g);
+    }
+  });
+
+  // 表格
+  var portData = [
+    {sw:'FortiGate (.254)', ports:[
+      {p:'port8', t:'WAN 163.21.221.124/25 → Internet', tp:'WAN'},
+      {p:'x1', t:'Aruba 8100 (.245) 1/1/29', tp:'10G'},
+      {p:'x2', t:'Aruba 8100 (.245) 1/1/31', tp:'10G'},
+    ]},
+    {sw:'Aruba CX8100-48F (.245) 核心', ports:[
+      {p:'1/1/21', t:'Aruba 2930F-A (.246) port 27', tp:'10G'},
+      {p:'1/1/23', t:'Aruba 2930F-B (.247) port 28', tp:'10G'},
+      {p:'1/1/25', t:'Aruba 2930F-C (.248) port 25', tp:'10G'},
+      {p:'1/1/27', t:'Cisco Catalyst (.252) Te1/1/4', tp:'10G'},
+      {p:'1/1/29', t:'FortiGate (.254) x1', tp:'10G'},
+      {p:'1/1/31', t:'FortiGate (.254) x2', tp:'10G'},
+    ]},
+    {sw:'Aruba 2930F-A (.246) 機房1', ports:[
+      {p:'1~2', t:'Broadcom 10G NIC 本機主機', tp:'10G'},
+      {p:'12', t:'FortiAP 資源班 (.122)', tp:'AP',a:true},
+      {p:'13', t:'FortiAP 自然教室 (.149)', tp:'AP',a:true},
+      {p:'14', t:'FortiAP 新多元 (.145)', tp:'AP',a:true},
+      {p:'15', t:'FortiAP 會計室 (.169)', tp:'AP',a:true},
+      {p:'16', t:'FortiAP 4年級 (.141)', tp:'AP',a:true},
+      {p:'17', t:'FortiAP 校長室 (.140)', tp:'AP',a:true},
+      {p:'27', t:'Aruba 8100 (.245) 1/1/21', tp:'10G 上行'},
+    ]},
+    {sw:'Aruba 2930F-B (.247) 機房2', ports:[
+      {p:'4', t:'⚪ ? C8:7F:54:16:F2:EE', tp:'不明',u:true},
+      {p:'5', t:'FortiAP 圖書館 (.143)', tp:'AP',a:true},
+      {p:'7', t:'⚪ ? C8:7F:54:16:F2:C8', tp:'不明',u:true},
+      {p:'10', t:'⚪ ? 24:4B:FE:E8:52:0C', tp:'不明',u:true},
+      {p:'16', t:'FortiAP 大辦公室 (.117)', tp:'AP',a:true},
+      {p:'17', t:'FortiAP 廚房 (.148)', tp:'AP',a:true},
+      {p:'18', t:'FortiAP 3年級 (.137)', tp:'AP',a:true},
+      {p:'19', t:'FortiAP 舊多元 (.102)', tp:'AP',a:true},
+      {p:'26', t:'Aruba 2930F-110 (.251) port 28', tp:'1G'},
+      {p:'28', t:'Aruba 8100 (.245) 1/1/23', tp:'10G 上行'},
+    ]},
+    {sw:'Aruba 2930F-C (.248) 機房3', ports:[
+      {p:'13', t:'FortiAP 2年級 (.156)', tp:'AP',a:true},
+      {p:'14', t:'FortiAP 1年級 (.170)', tp:'AP',a:true},
+      {p:'16', t:'FortiAP 幼兒園 (.146)', tp:'AP',a:true},
+      {p:'25', t:'Aruba 8100 (.245) 1/1/25', tp:'10G 上行'},
+    ]},
+    {sw:'Cisco Catalyst (.252)', ports:[
+      {p:'Gi1/0/4', t:'Aruba 8100 (.245) Te1/1/4', tp:'上行'},
+      {p:'Gi1/0/32', t:'Aruba 8100 (.245) 1/1/27', tp:'第二條'},
+    ]},
+    {sw:'Aruba 2930F-110 (.251) 教室區', ports:[
+      {p:'28', t:'Aruba 2930F-B (.247) port 26', tp:'1G 上行'},
+      {p:'5,6,10', t:'⚪ 未知終端', tp:'不明',u:true},
+      {p:'11,12,20', t:'⚪ 未知終端', tp:'不明',u:true},
+    ]},
+    {sw:'D-Link DGS-1510-28XMP (.249)', ports:[
+      {p:'?', t:'⚪ SNMP 通但無法讀 MAC table', tp:'不明',u:true},
+      {p:'?', t:'⚪ 推測管理 VLAN 不同', tp:'不明',u:true},
+    ]},
+  ];
+
+  var div = document.getElementById('port-details');
+  portData.forEach(function(s){
+    var sec = document.createElement('div');
+    sec.className = 'port-section';
+    var rows = '';
+    s.ports.forEach(function(p){
+      var cls = p.a ? 't-ap' : (p.u ? 't-unknown' : 't-uplink');
+      rows += '<tr><td><code>'+p.p+'</code></td><td class="'+cls+'">'+p.t+'</td><td>'+p.tp+'</td></tr>';
+    });
+    sec.innerHTML = '<h2>'+s.sw+'</h2><table class="port-table"><thead><tr><th>Port</th><th>對接設備</th><th>類型</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    div.appendChild(sec);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CiviClaw — 政府版 AI Agent 概念圖</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+    --input: #bfdbfe;
+    --process: #c7d2fe;
+    --storage: #99f6e4;
+    --external: #fde68a;
+    --risk: #fecaca;
+    --highlight: #d8b4fe;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --fg: #e5e7eb;
+      --muted: #a3adbd;
+      --line: #94a3b8;
+      --neutral: #334155;
+      --input: #1d4ed8;
+      --process: #4338ca;
+      --storage: #0f766e;
+      --external: #92400e;
+      --risk: #991b1b;
+      --highlight: #7c3aed;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font:
+      14px/1.4 ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+  }
+  main {
+    max-width: 980px;
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .title {
+    font-size: 20px;
+    font-weight: 650;
+    fill: var(--fg);
+  }
+  .label {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--fg);
+  }
+  .small {
+    font-size: 12px;
+    fill: var(--muted);
+  }
+  .node {
+    stroke: var(--line);
+    stroke-width: 1;
+    rx: 8;
+    ry: 8;
+  }
+  .neutral {
+    fill: var(--neutral);
+  }
+  .input {
+    fill: var(--input);
+  }
+  .process {
+    fill: var(--process);
+  }
+  .storage {
+    fill: var(--storage);
+  }
+  .external {
+    fill: var(--external);
+  }
+  .risk {
+    fill: var(--risk);
+  }
+  .highlight {
+    fill: var(--highlight);
+  }
+  .edge {
+    stroke: var(--line);
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .zone {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 1;
+    stroke-dasharray: 6 5;
+    opacity: 0.8;
+  }
+</style>
+<main>
+  <svg viewBox="0 0 920 760" xmlns="http://www.w3.org/2000/svg">
+    <!-- Arrows def -->
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+        <path d="M0,0 L10,4 L0,8 Z" fill="var(--line)" />
+      </marker>
+      <marker id="arrowDark" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+        <path d="M0,0 L10,4 L0,8 Z" fill="#94a3b8" />
+      </marker>
+    </defs>
+
+    <!-- ===== TITLE ===== -->
+    <text x="460" y="36" text-anchor="middle" class="title">🦞 CiviClaw — 政府版 AI Agent</text>
+    <text x="460" y="58" text-anchor="middle" class="small">台北市政府 · 資訊局「兩人一組」推動模式</text>
+
+    <!-- ===== ZONE: 公務員日常髒活 (top-left) ===== -->
+    <rect x="20" y="80" width="260" height="280" class="zone neutral" />
+    <text x="150" y="100" text-anchor="middle" class="label">公務員日常工作</text>
+    <text x="150" y="116" text-anchor="middle" class="small">(每天吃掉最多時間的髒活)</text>
+
+    <rect x="40" y="130" width="220" height="44" class="node input" />
+    <text x="150" y="152" text-anchor="middle" class="label">📧 收發信件</text>
+    <text x="150" y="166" text-anchor="middle" class="small">篩選分類、自動回覆</text>
+
+    <rect x="40" y="184" width="220" height="44" class="node input" />
+    <text x="150" y="206" text-anchor="middle" class="label">📁 整理資料</text>
+    <text x="150" y="220" text-anchor="middle" class="small">歸檔、標籤、搜尋</text>
+
+    <rect x="40" y="238" width="220" height="44" class="node input" />
+    <text x="150" y="260" text-anchor="middle" class="label">📅 安排排程</text>
+    <text x="150" y="274" text-anchor="middle" class="small">會議協調、行事曆管理</text>
+
+    <rect x="40" y="292" width="220" height="44" class="node input" />
+    <text x="150" y="314" text-anchor="middle" class="label">📝 幫忙寫報告</text>
+    <text x="150" y="328" text-anchor="middle" class="small">週報月報、簽呈草稿</text>
+
+    <!-- ===== ZONE: CiviClaw Agent (center) ===== -->
+    <rect x="340" y="140" width="240" height="160" rx="12" ry="12" class="highlight node" />
+    <text x="460" y="170" text-anchor="middle" class="label" fill="var(--fg)">🦞 CiviClaw Agent</text>
+    <text x="460" y="190" text-anchor="middle" class="small">政府版 AI Agent</text>
+    <text x="460" y="214" text-anchor="middle" style="font-size:13px;fill:var(--fg)">不是「建議」，是直接動手做完</text>
+    <text x="460" y="234" text-anchor="middle" style="font-size:12px;fill:var(--muted)">基礎：LLM + RAG + 工具鏈</text>
+    <text x="460" y="250" text-anchor="middle" style="font-size:12px;fill:var(--muted)">介接：公文系統、郵件、行事曆</text>
+    <text x="460" y="266" text-anchor="middle" style="font-size:12px;fill:var(--muted)">安全：資安規範、權限控管</text>
+
+    <!-- Arrows: dirty work → Agent -->
+    <line x1="260" y1="152" x2="330" y2="190" class="edge" marker-end="url(#arrow)" />
+    <line x1="260" y1="208" x2="330" y2="210" class="edge" marker-end="url(#arrow)" />
+    <line x1="260" y1="260" x2="330" y2="230" class="edge" marker-end="url(#arrow)" />
+    <line x1="260" y1="314" x2="330" y2="250" class="edge" marker-end="url(#arrow)" />
+
+    <!-- ===== ZONE: 關鍵瓶頸 (right) ===== -->
+    <rect x="640" y="80" width="260" height="280" class="zone neutral" />
+    <text x="770" y="100" text-anchor="middle" class="label">🌧️ 現實關卡</text>
+
+    <rect x="660" y="120" width="220" height="50" class="node risk" />
+    <text x="770" y="142" text-anchor="middle" class="label" style="fill:var(--fg)">🔒 資安鐵板</text>
+    <text x="770" y="160" text-anchor="middle" class="small">個資/機密讀取權限</text>
+
+    <rect x="660" y="184" width="220" height="50" class="node risk" />
+    <text x="770" y="206" text-anchor="middle" class="label" style="fill:var(--fg)">🔗 公文系統相容性</text>
+    <text x="770" y="224" text-anchor="middle" class="small">老舊封閉系統對接</text>
+
+    <rect x="660" y="248" width="220" height="50" class="node risk" />
+    <text x="770" y="270" text-anchor="middle" class="label" style="fill:var(--fg)">⏳ 信任曲線</text>
+    <text x="770" y="288" text-anchor="middle" class="small">前期重複檢查更花時間</text>
+
+    <!-- Arrows: Agent → Bottlenecks -->
+    <line x1="580" y1="200" x2="650" y2="200" class="edge" marker-end="url(#arrow)" />
+
+    <!-- ===== ZONE: 兩人一組 (bottom) ===== -->
+    <rect x="120" y="420" width="680" height="130" class="zone neutral" />
+    <text x="460" y="444" text-anchor="middle" class="label">✨ 核心設計：一人一組，各司其職</text>
+    <text x="460" y="462" text-anchor="middle" class="small">最懂工作怎麼跑的人，才有資格說工具該長什麼樣</text>
+
+    <!-- 資訊人員 box -->
+    <rect x="160" y="478" width="260" height="52" class="node process" />
+    <text x="290" y="502" text-anchor="middle" class="label">💻 資訊人員</text>
+    <text x="290" y="518" text-anchor="middle" class="small">懂技術、懂系統限制</text>
+
+    <!-- 業務承辦 box -->
+    <rect x="500" y="478" width="260" height="52" class="node external" />
+    <text x="630" y="502" text-anchor="middle" class="label">📋 業務承辦人</text>
+    <text x="630" y="518" text-anchor="middle" class="small">懂流程、懂現場需求</text>
+
+    <!-- Link between them -->
+    <line x1="420" y1="504" x2="490" y2="504" class="edge" marker-end="url(#arrow)" />
+    <text x="455" y="498" text-anchor="middle" class="small" style="font-size:11px">合作</text>
+
+    <!-- Arrow from team to Agent -->
+    <path d="M460,535 L460,308" class="edge" marker-end="url(#arrow)" />
+    <text x="470" y="420" text-anchor="start" class="small">共同打造</text>
+
+    <!-- ===== Quote bottom ===== -->
+    <rect x="80" y="590" width="760" height="70" rx="10" ry="10" class="node neutral" />
+    <text x="460" y="616" text-anchor="middle" style="font-size:14px;font-style:italic;fill:var(--fg)">
+      「工具再強，也要懂行的人才用得起來」
+    </text>
+    <text x="460" y="640" text-anchor="middle" class="small">
+      CiviClaw 的核心精神 — 公部門 Agent 不是取代人，而是讓人做更值得的事
+    </text>
+
+    <!-- ===== Timeline: 科技浪潮 (bottom-right) ===== -->
+    <rect x="80" y="680" width="760" height="60" class="node storage" />
+    <text x="460" y="704" text-anchor="middle" style="font-size:13px;fill:var(--fg)">
+      📈 E-mail 導入 → 公文系統電子化 → 雲端硬碟 → AI Agent（CiviClaw）
+    </text>
+    <text x="460" y="724" text-anchor="middle" class="small">
+      公部門每次都是最後上車，但一上車就開最久。這次輪到 AI Agent 了。
+    </text>
+  </svg>
+</main>
