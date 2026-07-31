@@ -31,13 +31,18 @@
 - **動物 Emoji 資料庫**: 已建立完整分類資料（memory/animal_representatives.md）。
 
 ### 📈 專案進展
-- **🏫 傷病報表系統（2026-07-14）**: Flask + SQLite 網頁系統，跑在 VM 192.60.1.153:5000，含帳號登入/記錄輸入/統計報表(Chart.js)/CSV匯出。學生資料 82 人（一~五年甲班）。已設 crontab @reboot 開機啟動。
-- **📋 DTPS 設備清單工具（2026-07-12）**: `device_inventory.py` 整合 SNMP 掃描，37→46 台設備全數在線。Flask `/portscan` 路由支援 Web 掃描 22 常見埠。
+- **🏫 傷病報表系統（2026-07-14，IP 2026-07-31 更新）**: Flask + SQLite 網頁系統，跑在 VM 192.60.1.158:5000，含帳號登入/記錄輸入/統計報表(Chart.js)/CSV匯出。學生資料 82 人（一~五年甲班）。已設 crontab @reboot 開機啟動。
+### 🔐 服務登入資訊（2026-07-31 更新）
+- **LibreNMS**: http://192.60.1.158:8000 帳號 admin / 密碼（重置於 2026-07-31，存於安全處）
+- **Redmine**: http://192.60.1.158:8080（DB: postgres / redmine_pass_2026）
+- **SearXNG**: http://192.60.1.158:8888（無登入）
+
+### 📋 DTPS 設備清單工具（2026-07-12）: `device_inventory.py` 整合 SNMP 掃描，37→46 台設備全數在線。Flask `/portscan` 路由支援 Web 掃描 22 常見埠。
 - **🌐 網路拓撲圖（2026-07-12）**: 手繪 SVG 校園網路拓撲，含 FortiGate → Core Switch → Edge Switches → 終端。Flask `/networkmap` 路由上線。
 - **📦 SNMP 探勘（2026-07-12）**: 發現 Aruba CX8100-48F（核心交換器）、Aruba 2930F×4、Cisco Catalyst 9K、FortiGate 500E。Community 分析：public/private/SnmpPublic@TPC/internal。
 
 ### 🌐 網路變動記錄
-- **OpenClaw VM IP**: 原 .107（已退役），現用 DHCP 取得 .153
+- **OpenClaw VM IP**: 原 .107（已退役）→ .153（2026-07-31 前）→ 現為 .158（DHCP 動態）
 - **2026-07**: 持續監控 192.60.1.0/24，chron job `network-alert-check` 透過 Telegram 自動通知埠口/主機變動
 - **離線主機**: .107（退役）、.115（可疑 Windows，曾開 80/135/445）、.118（間歇離線）
 
