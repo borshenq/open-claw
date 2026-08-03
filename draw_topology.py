@@ -74,18 +74,18 @@ draw = ImageDraw.Draw(img)
 center(draw, 10, "☁ WAN (163.21.221.124/25 — 教育部連線)", F12, MUTED)
 arrow(draw, W//2, 28, W//2, 60)
 
-# FortiGate
+# FortiGate — 最上層，內網架構前緣 (FortiAP 需在 FortiGate 後面才能 CAPWAP 註冊)
 rbox(draw, 370, 65, 360, 55, (191, 219, 254))
-center(draw, 72, "FortiGate-500E · 192.60.1.254", F13)
+center(draw, 72, "FortiGate-500E · 192.60.1.253 · 最上層", F13)
 center(draw, 88, "DTPS-FG5H0ETB19909536 · FortiOS 7.0.17 ✅ SNMP", F10, MUTED)
-center(draw, 104, "📡 CAPWAP port8:5247 · 16 FortiAPs 管控中", F10, MUTED)
-arrow(draw, W//2, 120, W//2, 155)
+center(draw, 104, "📡 CAPWAP port8:5247 · 16 FortiAPs 管控中 · 管理IP .254→.253", F10, MUTED)
+arrow(draw, W//2, 120, W//2, 158)
 
-# Core Switch
+# Core Switch — FortiGate 內網側 downlink，接 P29/P31
 rbox(draw, 340, 160, 420, 50, (199, 210, 254))
 center(draw, 168, "🔀 Aruba 8100 核心交換器 (.245) · 48x SFP+ 10G ✅SNMP", F12)
-center(draw, 184, "Port1→FS(.5) · Port5→FS備 · Port29→.254主 · Port31→.254備", F10, MUTED)
-center(draw, 198, "Port17→HP.17+NVR.167+UPS.249 · Port27→OpenClaw.153+Konica.97+Huawei.131", F10, MUTED)
+center(draw, 184, "↑Port29→FortiGate.253 x1 · ↑Port31→FortiGate.253 x2 (SNMP 2026-08-03)", F10, MUTED)
+center(draw, 198, "↓P23→.246 · ↓P27→.247 · ↓P25→.248 · ↓P27→Cisco.252 · Port1→FS(.5) · Port5→FS備", F10, MUTED)
 
 # Downlink labels
 down_y = 235
@@ -97,7 +97,7 @@ draw.text((px-10, 228), label, font=F9, fill=(88, 28, 135))
 
 # FortiAP Zone
 draw.rounded_rectangle((20, 255, 280, 400), radius=8, fill=(235,240,249), outline=LINE, width=1)
-left(draw, 40, 264, "📡 FortiAP 群 (CAPWAP→.254:5247)", F11, (88,28,135))
+left(draw, 40, 264, "📡 FortiAP 群 (CAPWAP→.253:5247)", F11, (88,28,135))
 draw.line((540, 210, 160, 255), fill=LINE, width=1)
 aps = [
     "A1大辦公室 .117    A2校長室 .140",
