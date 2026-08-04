@@ -1,6 +1,6 @@
 # 🌐 大屯國小完整網路拓撲
 
-最後更新: 2026-08-04 14:10 (全面重掃 MAC + 更新拓撲)
+最後更新: 2026-07-14 09:58
 
 ## 🔌 交換器 Port 對接關係（LLDP 實測）
 
@@ -11,21 +11,14 @@ FortiGate (.254)
   │ port x1  ⇢ Aruba 8100 (.245) 1/1/29
   │ port x2  ⇢ Aruba 8100 (.245) 1/1/31
   │
-Aruba CX8100-48F (.245) ← 核心交換器（2026-08-04 重掃：52 孔，13 孔 up，39 孔閒置）
-  │ port 1/1/21  ⇢ Aruba 2930F-A (.246) — 28 MAC（下接 FortiAP 群 + VMware）
-  │ port 1/1/23  ⇢ Aruba 2930F-B (.247) — 33 MAC（下接 .251）
-  │ port 1/1/25  ⇢ Aruba 2930F-C (.248) — 10 MAC
-  │ port 1/1/27  ⇢ Cisco Catalyst (.252) — 10 MAC
-  │ port 1/1/29  ⇢ FortiGate (.254) x1 — 主幹上聯
-  │ port 1/1/31  ⇢ FortiGate (.254) x2 — 主幹上聯備援
-  │ port 1/1/17  ⇢ 終端群（5 MAC：.17 .126 .131 .155 .249）
-  │ port 1/1/1   ⇢ Samsung 終端（00:11:32:66:d0:b6）
-  │ port 1/1/5   ⇢ Samsung 終端（00:11:32:66:d0:b1 → .5）
-  │ port 1/1/43  ⇢ 終端（90:09:d0:8e:b2:57）
-  │ port 1/1/45  ⇢ 終端（3c:33:32…, c8:7f:54…）
-  │ port 1/1/47  ⇢ 終端（1c:cf:82:86:34:1e → .254）
-  │ port 1/1/48  ⇢ 終端（58:76:9c:05:cf:76 → .250）
-  │ ※ 已完成 4 台 2930F 上聯定位：.246→1/1/21, .247→1/1/23, .248→1/1/25, .251→串接在 .247 下
+Aruba CX8100-48F (.245) ← 核心交換器
+  │ port 1/1/21  ⇢ Aruba 2930F-A (.246) — uplink (port 27)
+  │ port 1/1/23  ⇢ Aruba 2930F-B (.247) — uplink (port 28)
+  │ port 1/1/25  ⇢ Aruba 2930F-C (.248) — uplink (port 25)
+  │ port 1/1/27  ⇢ Cisco Catalyst (.252) — uplink (Te1/1/4)
+  │ port 1/1/29  ⇢ FortiGate (.254) x1
+  │ port 1/1/31  ⇢ FortiGate (.254) x2
+  │ port 1/1/?   ⇢ Aruba 2930F-110 (.251) — uplink → Aruba B (.247) port 26
   │
 Aruba 2930F-A (.246) ← 樓層/機房1
   │ port 1  ⇢ 空（接 Broadcom 10G NIC 本地主機?）
@@ -299,12 +292,12 @@ A05, A08, A09, A15, A29, A33, A35, T00, T01, 110T-02, 以及多台未命名 iPad
 | 設備 | IP | SNMP | Community | MAC Table |
 |:----|:--:|:----:|:---------|:---------:|
 | **FortiGate 500E** | .254 | ✅ | SnmpPublic@TPC | 1 筆 |
-| **Aruba CX8100-48F** | .245 | ✅ | SnmpPublic@TPC | 97 MACs |
-| **Aruba 2930F-A** (JL263A) | .246 | ✅ | SnmpPublic@TPC | 96 MACs |
-| **Aruba 2930F-B** (JL263A) | .247 | ✅ | SnmpPublic@TPC | 92 MACs |
-| **Aruba 2930F-C** (JL263A) | .248 | ✅ | SnmpPublic@TPC | 88 MACs |
-| **Aruba 2930F-110** (JL255A) | .251 | ✅ | SnmpPublic@TPC | 66 MACs |
-| **Cisco Catalyst 9K** | .252 | ✅ | SnmpPublic@TPC | 70 MACs |
+| **Aruba CX8100-48F** | .245 | ✅ | SnmpPublic@TPC | 85 MACs |
+| **Aruba 2930F-A** (JL263A) | .246 | ✅ | SnmpPublic@TPC | 88 MACs |
+| **Aruba 2930F-B** (JL263A) | .247 | ✅ | SnmpPublic@TPC | 71 MACs |
+| **Aruba 2930F-C** (JL263A) | .248 | ✅ | SnmpPublic@TPC | 68 MACs |
+| **Aruba 2930F-110** (JL255A) | .251 | ✅ | SnmpPublic@TPC | 58 MACs |
+| **Cisco Catalyst 9K** | .252 | ✅ | SnmpPublic@TPC | 59 MACs |
 | **D-Link DGS-1510-28XMP** | .249 | ✅ | private > public | 59 MACs |
 | **Brother 印表機** .138 | .138 | ✅ | internal / public | N/A |
 | **Brother 印表機** .151 | .151 | ✅ | internal / public | N/A |

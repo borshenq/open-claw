@@ -282,6 +282,100 @@ def export_devices(args):
     except Exception as e:
         print(f"匯出失敗: {e}")
 
+
+# ── 8100 交換器 SNMP Port 盤點 ──────────────────────────────
+SNMP_PORT_TIMEOUT = 30
+
+def _snmpwalk(host, community, oid):
+    """執行 snmpwalk 並回傳輸出文字"""
+    try:
+        out = subprocess.run(
+            ['snmpwalk', '-v2c', '-c', community, host, oid],
+            capture_output=True, text=True, timeout=SNMP_PORT_TIMEOUT
+        )
+        return out.stdout
+    except Exception as e:
+        print(f"⚠️ snmpwalk 失敗 ({oid}): {e}")
+        return ''
+
+
+def scan_8100_ports(args):
+    """用 SNMP 盤點 Aruba CX8100 的 port 使用狀況"""
+    import re
+    host = args.host
+    community = args.community
+
+    print(f"🔍 開始盤點 8100 ({host}) ...\n")
+
+    # 1. port 名稱 (ifIndex -> name)
+    index_name = {}
+    out = _snmpwalk(host, community, '1.3.6.1.2.1.2.2.1.2')
+    for line in out.splitlines():
+        m = re.search(r'\.(\d+) = STRING: "(.+?)"', line)
+        if m:
+            index_name[int(m.group(1))] = m.group(2)
+
+    # 2. link 狀態 (ifOperStatus: 1=up, 2=down)
+    index_status = {}
+    out = _snmpwalk(host, community, '1.3.6.1.2.1.2.2.1.8')
+    for line in out.splitlines():
+        m = re.search(r'\.(\d+) = INTEGER: (\d+)', line)
+        if m:
+            index_status[int(m.group(1))] = int(m.group(2))
+
+    # 3. LLDP 鄰居: ifIndex -> 對端設備名稱
+    #    lldpRemPortId(…1.1.7) 取 port, lldpRemSysName(…1.1.9) 取設備名
+    lldp_name = {}
+    out = _snmpwalk(host, community, '1.0.8802.1.1.2.1.4.1.1.9')
+    for line in out.splitlines():
+        m = re.search(r'\.(\d+)\.\d+\.[\d.]+ = STRING: "(.+?)"', line)
+        if m:
+            try:
+                lldp_name[int(m.group(1))] = m.group(2)
+            except ValueError:
+                pass
+
+    if not index_name:
+        print("❌ 無法讀取 port 清單，請確認 IP / community 是否正確")
+        return
+
+    print(f"{'Port':<8}{'狀態':<6}{'LLDP 對端設備'}")
+    print('-' * 50)
+    up_count = 0
+    for idx in sorted(index_name):
+        name = index_name[idx]
+        if not name.lower().startswith('1/'):
+            continue  # 只列出實體 port (1/1/x)
+        status = index_status.get(idx)
+        if status == 1:
+            up_count += 1
+        state = '🟢 up' if status == 1 else '⚪ down'
+        peer = lldp_name.get(idx, '')
+        if args.only_up and status != 1:
+            continue
+        print(f"{name:<8}{state:<6}{peer}")
+
+    print('-' * 50)
+    print(f"✅ 完成：實體 port {sum(1 for n in index_name.values() if n.lower().startswith('1/'))} 孔，其中 {up_count} 孔 up")
+
+    if args.save:
+        _save_8100_report(host, index_name, index_status, lldp_name, args.save)
+
+
+def _save_8100_report(host, index_name, index_status, lldp_name, outfile):
+    """把 8100 盤點結果存成 CSV"""
+    import csv
+    with open(outfile, 'w', newline='', encoding='utf-8-sig') as f:
+        w = csv.writer(f)
+        w.writerow(['Host', 'Port', 'Status', 'LLDP_Peer'])
+        for idx in sorted(index_name):
+            name = index_name[idx]
+            if not name.lower().startswith('1/'):
+                continue
+            status = 'up' if index_status.get(idx) == 1 else 'down'
+            w.writerow([host, name, status, lldp_name.get(idx, '')])
+    print(f"💾 報表已存檔: {outfile}")
+
 def main():
     parser = argparse.ArgumentParser(description="設備清單管理系統 (Device Inventory)")
     subparsers = parser.add_subparsers(dest='command', help='可用指令')
@@ -333,6 +427,14 @@ def main():
     parser_export = subparsers.add_parser('export', help='匯出設備清單為新的 CSV 檔案')
     parser_export.add_argument('--output', '-o', default='exported_inventory.csv', help='匯出的檔案名稱 (預設: exported_inventory.csv)')
     parser_export.set_defaults(func=export_devices)
+
+    # ports (8100 SNMP 盤點)
+    parser_ports = subparsers.add_parser('ports', help='盤點 Aruba 8100 交換器 port 使用狀況 (SNMP)')
+    parser_ports.add_argument('host', help='交換器 IP')
+    parser_ports.add_argument('--community', '-c', default='SnmpPublic@TPC', help='SNMP community (預設 SnmpPublic@TPC)')
+    parser_ports.add_argument('--only-up', action='store_true', help='只顯示 up 的 port')
+    parser_ports.add_argument('--save', '-s', default='', help='另存報表為 CSV')
+    parser_ports.set_defaults(func=scan_8100_ports)
 
     args = parser.parse_args()
     args.func(args)
