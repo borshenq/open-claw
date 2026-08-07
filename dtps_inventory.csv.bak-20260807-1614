@@ -1,0 +1,48 @@
+IP,Name,Type,Location,MAC,Notes
+192.60.1.127,DS925+,NAS,機房,00:11:32:AA:BB:CC,主NAS,
+192.60.1.153,OpenClaw VM,VM,機房,02:11:32:2A:CA:30,Flora的家,
+192.60.1.254,FortiGate-500E,Router,機房,04:D5:90:7D:7C:E8,FortiGate 500E (FG5H0ETB19909536),FortiGate 500E
+192.60.1.245,CX8100-48F,Switch,機房,E8:1C:A5:CD:BF:C0,Aruba 8100 R9W96A,Aruba 8100 48XF4C
+192.60.1.117,大辦公室AP,AP,行政大樓,00:0C:E6:CA:D7:B0,FortiAP-431F,
+192.60.1.138,Brother印表機,Printer,辦公室,B4:22:00:47:F0:46,Brother HL-xxx (172-17-3247F046),
+192.60.1.246,Aruba 2930F-1,Switch,機房,F8:60:F0:2B:C6:C0,Aruba JL263A 2930F-24G-PoE+,Aruba 2930F-24G-PoE+
+192.60.1.247,Aruba 2930F-2,Switch,機房,F8:60:F0:2B:04:40,Aruba JL263A 2930F-24G-PoE+,Aruba 2930F-24G-PoE+
+192.60.1.248,Aruba 2930F-3,Switch,機房,F8:60:F0:2B:C6:A0,Aruba JL263A 2930F-24G-PoE+,Aruba 2930F-24G-PoE+
+192.60.1.251,Aruba 2930F-4,Switch,教室區,B8:D4:E7:26:2C:E0,Aruba JL255A 2930F-24G-PoE+,Aruba 2930F-24G-PoE+
+192.60.1.252,Cisco Catalyst,Switch,機房,D0:09:C8:BA:C1:47,Cisco IOS XE 17.6.4 (Cat 9K),Cisco Catalyst 9K
+192.60.1.5,FS RackStation,NAS,機房,00:11:32:66:D0:B6,FS RackStation NAS，接核心8100 1/1/1,
+192.60.1.6,w2 RackStation,NAS,機房,00:11:32:41:7C:DD,w2 RackStation NAS，接核心8100 1/1/29,
+192.60.1.7,VMware ESXi,Server,機房,BC:97:E1:4B:6F:02,虛擬化主機,
+192.60.1.97,Konica C224e-1,Printer,辦公室,00:20:6B:3C:E8:F4,BizHub C224e,
+192.60.1.98,Konica C224e-2,Printer,辦公室,00:20:6B:FF:98:F5,BizHub C224e,
+192.60.1.99,Konica C224e-3,Printer,辦公室,00:20:6B:FF:97:0A,BizHub C224e,
+192.60.1.240,FUJIFILM C325dw,Printer,辦公室,1C:7D:22:62:0D:DC,ApeosPrint 彩色雷射,
+192.60.1.140,校長室AP,AP,校長室,84:39:8F:0D:3E:00,FortiAP-431F,
+192.60.1.155,警衛室AP,AP,警衛室,90:6C:AC:5D:3C:C8,警衛室AP FortiAP-221C，接核心8100 1/1/17,
+192.60.1.148,廚房AP,AP,廚房,90:6C:AC:5D:3C:38,FortiAP-221C,
+192.60.1.170,1年級AP,AP,一年級教室,00:0C:E6:BA:5C:00,FortiAP-431F,
+192.60.1.156,2年級AP,AP,二年級教室,00:0C:E6:BC:78:80,FortiAP-431F,
+192.60.1.137,3年級AP,AP,三年級教室,00:0C:E6:BB:90:80,FortiAP-431F,
+192.60.1.141,4年級AP,AP,四年級教室,00:0C:E6:BC:5B:C0,FortiAP-431F,
+192.60.1.149,自然教室AP,AP,自然教室,00:0C:E6:BA:94:C0,FortiAP-431F,
+192.60.1.122,資源班AP,AP,資源班教室,74:78:A6:56:DD:E8,FortiAP-431F,
+192.60.1.143,圖書館AP,AP,圖書館,00:0C:E6:BA:6A:80,FortiAP-431F,
+192.60.1.102,舊多元AP,AP,舊多元教室,00:0C:E6:BA:E8:40,FortiAP-431F,
+192.60.1.145,新多元AP,AP,新多元教室,00:0C:E6:BA:D4:40,FortiAP-431F,
+192.60.1.146,幼兒園AP,AP,幼兒園辦公室,74:78:A6:56:98:28,FortiAP-431F,
+192.60.1.169,會計室AP,AP,會計室,74:78:A6:56:88:28,FortiAP-431F,
+192.60.1.125,Axis攝影機-1,Camera,校園,00:18:1A:08:2C:74,網路攝影機,
+192.60.1.42,Axis攝影機-2,Camera,校園,E0:10:7F:2B:AD:C0,網路攝影機,
+192.60.1.167,GeoVision NVR,NVR,機房,10:7C:61:49:3C:BD,GeoVision NVR 14埠，接核心8100 1/1/17,
+192.60.1.249,DGS-1510 交換器,Switch,機房,40:9B:CD:D5:6C:C0,D-Link DGS-1510-28XMP SmartPro Switch (原誤標為Delta UPS-5)，community=public，Port 5/12/24/28 up,
+192.60.1.151,Brother印表機-2,Printer,辦公室,B4:22:00:4F:C7:71,Brother MFC-L2715DW,
+192.60.1.21,不明-21,Unknown,機房,DC:A6:32:8E:17:61,未知，全埠關閉，接核心8100 1/1/27,
+192.60.1.30,不明-30,Server,機房,6C:AA:B3:0C:52:B4,Server 有FTP/SSH/HTTP/HTTPS，接核心8100 1/1/27,
+192.60.1.31,MFC-31,Printer,辦公室,00:0F:0D:2E:67:75,HP 雷射印表機，開80/443,
+192.60.1.32,HP-32,Printer,辦公室,00:0F:0D:2F:1D:69,HP 雷射印表機，開80/443/MQTT,
+192.60.1.103,不明-103,Unknown,不明,00:0C:29:91:7C:44,僅開 SSH，新發現設備,
+192.60.1.105,不明-105,Unknown,不明,90:6D:05:0D:02:66,HTTP+SMB，IRC 6666/6667,
+192.60.1.116,不明-116,Unknown,不明,C8:7F:54:16:F3:1F,Windows-like (80+135+139+445),
+192.60.1.120,不明-120,Unknown,不明,C8:7F:54:16:F3:C1,Windows-like (80+135+139+445),
+192.60.1.152,不明-152,Unknown,不明,C8:7F:54:16:F2:C8,Windows-like (80+135+139+445),
+192.60.1.9,FS NAS-2,NAS,機房,00:11:32:66:D0:B1,Synology (MAC 00:11:32:66:D0:B1)，接核心8100 1/1/5

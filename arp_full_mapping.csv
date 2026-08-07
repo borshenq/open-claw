@@ -1,0 +1,60 @@
+﻿IP,MAC,廠牌,庫存名稱,庫存Type,庫存Location,比對狀態
+192.60.1.5,00:11:32:66:D0:B1,Synology,FS RackStation,NAS,機房,MAC相符
+192.60.1.6,00:11:32:41:7C:DD,Synology,w2 RackStation,NAS,機房,MAC相符
+192.60.1.7,BC:97:E1:4B:6F:02,Broadcom,VMware ESXi,Server,機房,MAC相符
+192.60.1.17,00:90:E8:5D:2E:39,MOXA,MOXA NPort 5210,SerialServer,機房,MAC相符
+192.60.1.20,24:4B:FE:E8:52:0C,ASUS,PAPER101 標籤列印站,Desktop,總務,MAC相符
+192.60.1.21,DC:A6:32:8E:17:61,Raspberry Pi,不明-21,Unknown,機房,MAC相符
+192.60.1.30,6C:AA:B3:0C:52:B4,Ruckus,不明-30,Server,機房,MAC相符
+192.60.1.31,00:0F:0D:2E:67:75,Hunt(監視),MFC-31,Printer,辦公室,MAC相符
+192.60.1.32,00:0F:0D:2F:1D:69,Hunt(監視),HP-32,Printer,辦公室,MAC相符
+192.60.1.42,E0:10:7F:2B:AD:C0,Ruckus,Axis攝影機-2,Camera,校園,MAC相符
+192.60.1.97,00:20:6B:3C:E8:F4,Konica Minolta,Konica C224e-1,Printer,辦公室,MAC相符
+192.60.1.98,00:20:6B:FF:98:F5,Konica Minolta,Konica C224e-2,Printer,辦公室,MAC相符
+192.60.1.99,00:20:6B:FF:97:0A,Konica Minolta,Konica C224e-3,Printer,辦公室,MAC相符
+192.60.1.105,FC:34:97:3C:D6:18,ASUS,不明-105,Unknown,不明,MAC相符
+192.60.1.107,C8:7F:54:16:F3:C1,ASUS,ASUS網通設備,Unknown,不明,MAC相符
+192.60.1.108,90:6C:AC:5D:3C:38,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.110,74:78:A6:56:98:28,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.111,4C:0F:3E:33:7C:BE,Intel,Intel網卡設備,Unknown,不明,MAC相符
+192.60.1.112,00:0C:E6:B9:30:80,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.113,00:0C:E6:BA:94:C0,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.114,00:0C:E6:BA:D4:40,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.115,00:0C:E6:BA:E8:40,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.116,74:78:A6:56:DD:E8,"Fortinet, Inc.",不明-116,Unknown,不明,MAC相符
+192.60.1.117,00:0C:E6:BA:6A:80,"Fortinet, Inc.",大辦公室AP,AP,行政大樓,MAC相符
+192.60.1.118,00:0C:E6:BC:5B:C0,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.119,00:0C:E6:BC:78:80,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.120,00:0C:E6:CA:D7:B0,"Fortinet, Inc.",不明-120,Unknown,不明,MAC相符
+192.60.1.121,F4:4D:30:45:2E:62,ECS,,,,庫存無此IP-新增
+192.60.1.122,84:39:8F:B3:38:10,"Fortinet, Inc.",資源班AP,AP,資源班教室,MAC相符
+192.60.1.125,FC:34:97:3C:D6:3C,ASUS,Axis攝影機-1,Camera,校園,MAC相符
+192.60.1.126,10:7C:61:49:3C:BD,ASUS,SMAA10_GUARD 警衛勤務電腦,Desktop,警衛室,MAC相符
+192.60.1.127,90:09:D0:8E:B2:58,Synology,DS925+,NAS,機房,MAC相符
+192.60.1.129,A0:AD:9F:98:15:E9,ASUS,ASUS網通設備,Unknown,不明,MAC相符
+192.60.1.130,A0:AD:9F:98:53:68,ASUS,,,,庫存無此IP-新增
+192.60.1.131,04:7C:16:D2:3A:D9,MSI,,,,庫存無此IP-新增
+192.60.1.132,90:6D:05:0D:02:66,BXB(廣播),,,,庫存無此IP-新增
+192.60.1.133,04:D9:F5:BB:61:A4,ASUS,,,,庫存無此IP-新增
+192.60.1.134,00:0C:29:E5:AF:F9,"VMware, Inc.",,,,庫存無此IP-新增
+192.60.1.135,C8:7F:54:16:F3:1F,ASUS,ASUS-Win主機,Desktop,不明,MAC相符
+192.60.1.136,24:4B:FE:EA:C9:E6,ASUS,VMware-VM,VM,機房,MAC相符
+192.60.1.137,FC:34:97:3C:D6:D9,ASUS,3年級AP,AP,三年級教室,MAC相符
+192.60.1.138,B4:22:00:47:F0:46,Brother,Brother印表機,Printer,辦公室,MAC相符
+192.60.1.139,C8:7F:54:16:F2:C8,ASUS,,,,庫存無此IP-新增
+192.60.1.140,84:39:8F:0D:3E:00,"Fortinet, Inc.",校長室AP,AP,校長室,MAC相符
+192.60.1.147,00:0C:E6:BB:90:80,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.151,B4:22:00:4F:C7:71,Brother,Brother印表機-2,Printer,辦公室,MAC相符
+192.60.1.155,90:6C:AC:5D:3C:C8,"Fortinet, Inc.",警衛室AP,AP,警衛室,MAC相符
+192.60.1.169,74:78:A6:56:88:28,"Fortinet, Inc.",會計室AP,AP,會計室,MAC相符
+192.60.1.200,00:03:21:12:37:B9,Reco(科儀),Reco儀器設備,Instrument,未知,MAC相符
+192.60.1.240,1C:7D:22:62:0D:DC,FUJIFILM,FUJIFILM C325dw,Printer,辦公室,MAC相符
+192.60.1.245,E8:1C:A5:CD:BF:C0,HPE,CX8100-48F,Switch,機房,MAC相符
+192.60.1.247,F8:60:F0:2B:04:40,HPE,Aruba 2930F-2,Switch,機房,MAC相符
+192.60.1.248,F8:60:F0:2B:C6:A0,HPE,Aruba 2930F-3,Switch,機房,MAC相符
+192.60.1.249,40:9B:CD:D5:6C:C0,D-Link,DGS-1510 交換器,Switch,機房,MAC相符
+192.60.1.250,58:76:9C:05:CF:76,Palo Alto,PA-1420-介面2,Firewall,機房,MAC相符
+192.60.1.251,B8:D4:E7:26:2C:E0,HPE,Aruba 2930F-4,Switch,教室區,MAC相符
+192.60.1.252,D0:09:C8:BA:C1:47,"Cisco Systems, Inc",Cisco Catalyst,Switch,機房,MAC相符
+192.60.1.253,04:D5:90:7D:7C:E8,"Fortinet, Inc.",,,,庫存無此IP-新增
+192.60.1.254,1C:CF:82:86:34:1E,Palo Alto,FortiGate-500E,Router,機房,MAC相符
