@@ -37,7 +37,7 @@
 192.60.1.249,DGS-1510 交換器,Switch,機房,40:9B:CD:D5:6C:C0,D-Link DGS-1510-28XMP SmartPro Switch (原誤標為Delta UPS-5)，community=public，Port 5/12/24/28 up
 192.60.1.151,Brother印表機-2,Printer,辦公室,B4:22:00:4F:C7:71,Brother MFC-L2715DW
 192.60.1.21,不明-21,Unknown,機房,DC:A6:32:8E:17:61,未知，全埠關閉，接核心8100 1/1/27
-192.60.1.30,不明-30,Server,機房,6C:AA:B3:0C:52:B4,Server 有FTP/SSH/HTTP/HTTPS，接核心8100 1/1/27
+192.60.1.30,Ruckus-ZoneDirector,WirelessController,機房,6C:AA:B3:0C:52:B4,"Ruckus ZoneDirector 無線控制器 SN-191423000252 (Appweb/EJS, SSL憑證辨識), 接核心8100 1/1/27"
 192.60.1.31,MFC-31,Printer,辦公室,00:0F:0D:2E:67:75,HP 雷射印表機，開80/443
 192.60.1.32,HP-32,Printer,辦公室,00:0F:0D:2F:1D:69,HP 雷射印表機，開80/443/MQTT
 192.60.1.103,不明-103,Unknown,不明,00:0C:29:91:7C:44,僅開 SSH，新發現設備
