@@ -36,12 +36,9 @@
 192.60.1.167,GeoVision NVR,NVR,機房,10:7C:61:49:3C:BD,GeoVision NVR 14埠，接核心8100 1/1/17
 192.60.1.249,DGS-1510 交換器,Switch,機房,40:9B:CD:D5:6C:C0,D-Link DGS-1510-28XMP SmartPro Switch (原誤標為Delta UPS-5)，community=public，Port 5/12/24/28 up
 192.60.1.151,Brother印表機-2,Printer,辦公室,B4:22:00:4F:C7:71,Brother MFC-L2715DW
-192.60.1.21,不明-21,Unknown,機房,DC:A6:32:8E:17:61,未知，全埠關閉，接核心8100 1/1/27
 192.60.1.30,Ruckus-ZoneDirector,WirelessController,機房,6C:AA:B3:0C:52:B4,"Ruckus ZoneDirector 無線控制器 SN-191423000252 (Appweb/EJS, SSL憑證辨識), 接核心8100 1/1/27"
 192.60.1.31,MFC-31,Printer,辦公室,00:0F:0D:2E:67:75,HP 雷射印表機，開80/443
 192.60.1.32,HP-32,Printer,辦公室,00:0F:0D:2F:1D:69,HP 雷射印表機，開80/443/MQTT
-192.60.1.103,不明-103,Unknown,不明,00:0C:29:91:7C:44,僅開 SSH，新發現設備
-192.60.1.105,不明-105,Unknown,不明,FC:34:97:3C:D6:18,HTTP+SMB，IRC 6666/6667 [MAC更新:ASUS]
 192.60.1.116,不明-116,Unknown,不明,74:78:A6:56:DD:E8,"Windows-like (80+135+139+445) [MAC更新:Fortinet, Inc.]"
 192.60.1.120,FortiAP-431F,AP,待確認,00:0C:E6:CA:D7:B0,"FortiAP-U431F (SN PU431FTH20016878, SSL憑證辨識)"
 192.60.1.152,ASUS-Win主機,Desktop,不明,A0:AD:9F:98:53:68,ASUSTek Win10/11（OS偵測96%），開FTP/135/445；SMB簽章強制（較安全），接核心8100 1/1/27（原MAC C8:7F:54:16:F2:C8標錯已更正）
@@ -49,11 +46,8 @@
 192.60.1.250,PA-1420-介面2,Firewall,機房,58:76:9C:05:CF:76,Palo Alto 防火牆第二介面(MAC=Palo Alto Networks)，全埠filtered，接核心8100 1/1/48；SNMP未開
 192.60.1.17,MOXA NPort 5210,SerialServer,機房,00:90:E8:5D:2E:39,MOXA NPort 5210 序列伺服器(Ethernet-to-serial bridge)，OS偵測確認，接核心8100 1/1/17
 192.60.1.20,PAPER101 標籤列印站,Desktop,總務,24:4B:FE:E8:52:0C,Win10 Enterprise(ASUS)，主機名PAPER101，分享scan/Users/TSC TTP-244 Pro標籤機；SMBv1+guest可讀Users=風險
-192.60.1.104,ASUS-FTP設備,Unknown,不明,24:4B:FE:EA:C9:E6,ASUSTek(24:4B:FE)，開FTP(21)，角色待確認
 192.60.1.107,SMAA10-11204,Desktop,不明,C8:7F:54:16:F3:C1,"Windows 10 Enterprise + IIS server (NetBIOS:SMAA10-11204)"
-192.60.1.111,Intel網卡設備,Unknown,不明,4C:0F:3E:33:7C:BE,Intel(4C:0F:3E)網卡設備，無開放埠，角色待確認
 192.60.1.123,不明-123,Unknown,不明,CE:61:D4:81:B1:C2,隨機/未註冊MAC，全埠關閉，角色待確認
-192.60.1.124,不明-124,Unknown,不明,04:7C:16:D2:3A:D9,04:7C:16廠牌，全埠關閉，接核心8100 1/1/27，角色待確認
 192.60.1.126,SMAA10_GUARD 警衛勤務電腦,Desktop,警衛室,10:7C:61:49:3C:BD,Win10 Enterprise(ECS主機板)，主機名SMAA10_GUARD，開445；SMBv1+sig-not-required=風險，接核心8100 1/1/17 [MAC更新:ASUS]
 192.60.1.128,ASUS-Win主機,Desktop,不明,FC:34:97:3C:D6:D9,ASUSTek(FC:34:97)，Win10/11，開FTP/135/139/445，角色待確認
 192.60.1.129,SMAA10-11301,Desktop,不明,A0:AD:9F:98:15:E9,"Windows 電腦 (NetBIOS:SMAA10-11301)"
@@ -62,7 +56,6 @@
 192.60.1.144,FortiAP-431F(新),AP,不明,00:0C:E6:B9:30:80,Fortinet(00:0C:E6) FortiAP-431F，開SSH/HTTPS，庫存原未對應，待確認安裝位置
 192.60.1.162,ACCOUNT 會計室電腦,Desktop,會計室,04:D9:F5:BB:61:A4,Win10 Enterprise(04:D9:F5)，主機名ACCOUNT，分享scan/Users+FUJI XEROX M375z，客服用；guest對Users有R/W=高風險
 192.60.1.200,Reco儀器設備,Instrument,未知,00:03:21:12:37:B9,Reco Research(00:03:21)儀器/資料擷取設備，無開放埠，角色待確認
-192.60.1.108,新增-108,AP,待確認,90:6C:AC:5D:3C:38,"FortiAP無線基地台(arp-scan新增,待確認位置)"
 192.60.1.110,新增-110,AP,待確認,74:78:A6:56:98:28,"FortiAP無線基地台(arp-scan新增,待確認位置)"
 192.60.1.112,FortiAP-431F,AP,待確認,00:0C:E6:B9:30:80,"FortiAP-U431F (SN PU431FTH20005630, SSL憑證辨識)"
 192.60.1.113,FortiAP-431F,AP,待確認,00:0C:E6:BA:94:C0,"FortiAP-U431F (SN PU431FTH20007055, SSL憑證辨識)"
@@ -72,10 +65,8 @@
 192.60.1.119,FortiAP-431F,AP,待確認,00:0C:E6:BC:78:80,"FortiAP-U431F (SN PU431FTH20008990, SSL憑證辨識)"
 192.60.1.121,SMAA10_GUARD,Desktop,警衛室,F4:4D:30:45:2E:62,"Windows 10 警衛室勤務電腦 (NetBIOS:SMAA10_GUARD)"
 192.60.1.130,SMAA10-Win130,Desktop,待確認,A0:AD:9F:98:53:68,"Windows 主機 (SMB 135/445)"
-192.60.1.131,新增-131,Desktop,待確認,04:7C:16:D2:3A:D9,"MSI設備(arp-scan新增,角色待確認)"
 192.60.1.132,BXB廣播主機,BroadcastSystem,待確認,90:6D:05:0D:02:66,"BXB Electronics 校園廣播系統主機 (NetBIOS:WINDOWS-LCAFA1D, HTTP+SMB)"
 192.60.1.133,ACCOUNT,Desktop,會計室,04:D9:F5:BB:61:A4,"Windows 10 會計室電腦含列印 (NetBIOS:ACCOUNT)"
-192.60.1.134,新增-134,VM,待確認,00:0C:29:E5:AF:F9,"VMware虛擬機(arp-scan新增,待確認)"
 192.60.1.139,SMAA10-11203,Desktop,不明,C8:7F:54:16:F2:C8,"Windows 10 Enterprise + IIS (NetBIOS:SMAA10-11203)"
 192.60.1.147,FortiAP-431F,AP,待確認,00:0C:E6:BB:90:80,"FortiAP-U431F (SN PU431FTH20008062, SSL憑證辨識)"
 192.60.1.253,FortiGate-500E,Firewall,機房,04:D5:90:7D:7C:E8,FortiGate 500E 防火牆 (經確認)
