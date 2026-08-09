@@ -41,6 +41,13 @@
 - **🌐 網路拓撲圖（2026-07-12）**: 手繪 SVG 校園網路拓撲，含 FortiGate → Core Switch → Edge Switches → 終端。Flask `/networkmap` 路由上線。
 - **📦 SNMP 探勘（2026-07-12）**: 發現 Aruba CX8100-48F（核心交換器）、Aruba 2930F×4、Cisco Catalyst 9K、FortiGate 500E。Community 分析：public/private/SnmpPublic@TPC/internal。
 
+### 🔥 PA-1420 防火牆 SNMP（2026-08-09）
+- **設備**: 192.60.1.254 = Palo Alto PA-1420 防火牆（原誤測為 FortiGate，實為 PA）
+- **SNMP 狀態**: 服務預設關閉；掃 community（public/private/SnmpPublic@TPC/internal/tpc/campus 等）全數無回應
+- **僅偶發一次** `SnmpPublic@TPC` snmpwalk 回「Unknown Object Identifier」，不穩定 → agent 未正常啟用
+- **主機其他埠**: SSH(22) 開、HTTPS(443) 開、TCP 161 關
+- **啟用 SNMP 步驟**: Device > Setup > Operations > SNMP Setup > 設 V2C + community + 允許來源 IP > 啟用服務 > Commit
+
 ### 🌐 網路變動記錄
 - **OpenClaw VM IP**: 原 .107（已退役）→ .153（2026-07-31 前）→ 現為 .158（DHCP 動態）
 - **2026-07**: 持續監控 192.60.1.0/24，chron job `network-alert-check` 透過 Telegram 自動通知埠口/主機變動
