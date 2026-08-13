@@ -1,0 +1,85 @@
+IPs,MAC,Name,Type,Location,Notes
+192.60.1.152,FC:34:97:3C:D6:18,AP-105,AP,不明,Fortinet? MAC FC:34:97 ASUS OUI，線上待辨識 [DHCP:原192.60.1.105→192.60.1.152]
+192.60.1.107,C8:7F:54:16:F3:C1,SMAA10-11204,Desktop,不明,Windows 10 Enterprise + IIS server (NetBIOS:SMAA10-11204)
+192.60.1.135,90:6C:AC:5D:3C:38,FortiAP-108,AP,待確認,FortiAP (MAC 90:6C:AC Fortinet，線上，先前誤移除後復現) [DHCP:原192.60.1.108→192.60.1.135]
+192.60.1.136,74:78:A6:56:98:28,資源班教室AP,AP,資源班教室,"FortiAP無線基地台(arp-scan新增,待確認位置) [DHCP:原192.60.1.110→192.60.1.136]"
+192.60.1.162,4C:0F:3E:33:7C:BE,Intel設備-111,Device,不明,Intel OUI 4C:0F:3E，線上待辨識 [DHCP:原192.60.1.111→192.60.1.162]
+192.60.1.137,00:0C:E6:B9:30:80,1年級(離線)AP,AP,1年級(離線),"FortiAP-U431F (SN PU431FTH20005630, SSL憑證辨識) [DHCP:原192.60.1.112→192.60.1.137]"
+192.60.1.139,00:0C:E6:BA:94:C0,新多元newAP,AP,新多元new,"FortiAP-U431F (SN PU431FTH20007055, SSL憑證辨識) [DHCP:原192.60.1.113→192.60.1.139]"
+192.60.1.140,00:0C:E6:BA:D4:40,舊多元AP,AP,舊多元,"FortiAP-U431F (SN PU431FTH20007309, SSL憑證辨識) [DHCP:原192.60.1.114→192.60.1.140]"
+192.60.1.141,00:0C:E6:BA:E8:40,3年級AP,AP,3年級,"FortiAP-U431F (SN PU431FTH20007389, SSL憑證辨識) [DHCP:原192.60.1.115→192.60.1.141]"
+192.60.1.142,74:78:A6:56:DD:E8,5年級AP,Unknown,5年級,"Windows-like (80+135+139+445) [MAC更新:Fortinet, Inc.] [DHCP:原192.60.1.116→192.60.1.142]"
+192.60.1.145,00:0C:E6:BA:6A:80,大辦公室AP,AP,自然教室,"FortiAP-431F [MAC更新:Fortinet, Inc.] [DHCP:原192.60.1.117→192.60.1.145]"
+192.60.1.146,00:0C:E6:BC:5B:C0,2年級AP,AP,2年級,"FortiAP-U431F (SN PU431FTH20008875, SSL憑證辨識) [DHCP:原192.60.1.118→192.60.1.146]"
+192.60.1.147,00:0C:E6:BC:78:80,A1大辦公室AP,AP,A1大辦公室,"FortiAP-U431F (SN PU431FTH20008990, SSL憑證辨識) [DHCP:原192.60.1.119→192.60.1.147]"
+192.60.1.148,00:0C:E6:CA:D7:B0,A2校長室AP,AP,A2校長室,"FortiAP-U431F (SN PU431FTH20016878, SSL憑證辨識) [DHCP:原192.60.1.120→192.60.1.148]"
+192.60.1.149,F4:4D:30:45:2E:62,SMAA10_GUARD,Desktop,警衛室,Windows 10 警衛室勤務電腦 (NetBIOS:SMAA10_GUARD) [DHCP:原192.60.1.121→192.60.1.149]
+192.60.1.122,84:39:8F:B3:38:10,資源班AP,AP,資源班教室,"FortiAP-431F（Fortinet確認，開SSH/HTTPS） [MAC更新:Fortinet, Inc.]"
+192.60.1.125,CE:61:D4:81:B1:C2,不明-123,Unknown,不明,隨機/未註冊MAC，全埠關閉，角色待確認 [DHCP:原192.60.1.123→192.60.1.125]
+192.60.1.123,FC:34:97:3C:D6:3C,Axis攝影機-1,Camera,校園,網路攝影機 [MAC更新:ASUS] [DHCP:原192.60.1.125→192.60.1.123]
+192.60.1.126,IPCam-126,Camera,校園,警衛室,IP攝影機 Real Server 串流 (RTSP 554/7070)
+192.60.1.127,90:09:D0:8E:B2:58,DS925+,NAS,機房,主NAS（Synology，SMBv3-only，接核心8100 1/1/27；第二網口於1/1/43=90:09:D0:8E:B2:57）
+192.60.1.154,A0:AD:9F:98:15:E9,SMAA10-11301,Desktop,不明,Windows 電腦 (NetBIOS:SMAA10-11301) [DHCP:原192.60.1.129→192.60.1.154]
+192.60.1.104,A0:AD:9F:98:53:68,SMAA10-Win130,Desktop,待確認,Windows 主機 (SMB 135/445) [DHCP:原192.60.1.130→192.60.1.104]
+192.60.1.131,04:7C:16:D2:3A:D9,MSI設備-131,Device,不明,MSI OUI 04:7C:16，線上待辨識
+192.60.1.153,90:6D:05:0D:02:66,BXB廣播主機,BroadcastSystem,待確認,"BXB Electronics 校園廣播系統主機 (NetBIOS:WINDOWS-LCAFA1D, HTTP+SMB) [DHCP:原192.60.1.132→192.60.1.153]"
+192.60.1.102,04:D9:F5:BB:61:A4,ACCOUNT,Desktop,會計室,Windows 10 會計室電腦含列印 (NetBIOS:ACCOUNT) [DHCP:原192.60.1.133→192.60.1.102]
+192.60.1.134,00:0C:29:E5:AF:F9,VM-134,VM,機房,VMware VM (MAC 00:0C:29)，線上待辨識
+192.60.1.106,C8:7F:54:16:F3:1F,ASUS-Win主機,Desktop,不明,ASUSTek(A0:AD:9F)，開FTP/135/139/445，拒絕匿名SMB連線(較安全)，角色待確認 [MAC更新:ASUS] [DHCP:原192.60.1.135→192.60.1.106]
+192.60.1.111,24:4B:FE:EA:C9:E6,VMware-VM,VM,機房,VMware虛擬機(00:0C:29)，無開放埠，角色待確認 [MAC更新:ASUS] [DHCP:原192.60.1.136→192.60.1.111]
+192.60.1.124,FC:34:97:3C:D6:D9,3年級AP,AP,三年級教室,FortiAP-431F [MAC更新:ASUS] [DHCP:原192.60.1.137→192.60.1.124]
+192.60.1.138,B4:22:00:47:F0:46,Brother印表機,Printer,辦公室,Brother HL-xxx (172-17-3247F046)
+192.60.1.133,C8:7F:54:16:F2:C8,SMAA10-11203,Desktop,不明,Windows 10 Enterprise + IIS (NetBIOS:SMAA10-11203) [DHCP:原192.60.1.139→192.60.1.133]
+192.60.1.128,84:39:8F:0D:3E:00,4年級AP,AP,四年級教室,FortiAP-431F [DHCP:原192.60.1.141→192.60.1.128]
+192.60.1.130,74:78:A6:56:88:28,會計室AP-142,AP,幼兒園辦公室,FortiAP (MAC 74:78:A6 Fortinet，同 port_mapping 會計室AP .169) [DHCP:原192.60.1.142→192.60.1.130]
+192.60.1.132,00:0C:E6:BB:90:80,4年級AP,AP,4年級,"FortiAP-U431F (SN PU431FTH20008062, SSL憑證辨識) [DHCP:原192.60.1.147→192.60.1.132]"
+192.60.1.151,B4:22:00:4F:C7:71,Brother印表機-2,Printer,辦公室,Brother MFC-L2715DW
+192.60.1.155,90:6C:AC:5D:3C:C8,警衛室AP,AP,警衛室,警衛室AP FortiAP-221C，接核心8100 1/1/17
+192.60.1.17,00:90:E8:5D:2E:39,MOXA NPort 5210,SerialServer,機房,MOXA NPort 5210 序列伺服器(Ethernet-to-serial bridge)，OS偵測確認，接核心8100 1/1/17
+192.60.1.20,24:4B:FE:E8:52:0C,PAPER101 標籤列印站,Desktop,總務,Win10 Enterprise(ASUS)，主機名PAPER101，分享scan/Users/TSC TTP-244 Pro標籤機；SMBv1+guest可讀Users=風險
+192.60.1.200,00:03:21:12:37:B9,Reco儀器設備,Instrument,未知,Reco Research(00:03:21)儀器/資料擷取設備，無開放埠，角色待確認
+192.60.1.21,RPi-21,Device,待確認,機房,Raspberry Pi (無對外服務埠)
+192.60.1.240,1C:7D:22:62:0D:DC,FUJIFILM C325dw,Printer,辦公室,ApeosPrint 彩色雷射
+192.60.1.245,E8:1C:A5:CD:BF:C0,CX8100-48F,Switch,機房,Aruba 8100 R9W96A
+192.60.1.246,F8:60:F0:2B:C6:C0,Aruba 2930F-1,Switch,機房,Aruba JL263A 2930F-24G-PoE+
+192.60.1.247,F8:60:F0:2B:04:40,Aruba 2930F-2,Switch,機房,Aruba JL263A 2930F-24G-PoE+
+192.60.1.248,F8:60:F0:2B:C6:A0,Aruba 2930F-3,Switch,機房,Aruba JL263A 2930F-24G-PoE+
+192.60.1.249,40:9B:CD:D5:6C:C0,DGS-1510 交換器,Switch,機房,D-Link DGS-1510-28XMP SmartPro Switch (原誤標為Delta UPS-5)，community=public，Port 5/12/24/28 up
+192.60.1.250,58:76:9C:05:CF:76,PA-1420-介面2,Firewall,機房,Palo Alto 防火牆第二介面(MAC=Palo Alto Networks)，全埠filtered，接核心8100 1/1/48；SNMP未開
+192.60.1.251,B8:D4:E7:26:2C:E0,Aruba 2930F-4,Switch,教室區,Aruba JL255A 2930F-24G-PoE+
+192.60.1.252,D0:09:C8:BA:C1:47,Cisco Catalyst,Switch,機房,Cisco IOS XE 17.6.4 (Cat 9K)
+192.60.1.253,04:D5:90:7D:7C:E8,FortiGate-500E,Firewall,機房,FortiGate 500E 防火牆 (經確認)
+192.60.1.254,1C:CF:82:86:34:1E,PA-1420,Firewall,機房,Palo Alto 防火牆 (原誤標 FortiGate-500E
+192.60.1.30,6C:AA:B3:0C:52:B4,Ruckus-ZoneDirector,WirelessController,機房,"Ruckus ZoneDirector 無線控制器 SN-191423000252 (Appweb/EJS, SSL憑證辨識), 接核心8100 1/1/27"
+192.60.1.31,IPCam-31,Camera,校園,辦公室,IP攝影機 海思方案，H264 1080P，Live555 RTSP (原MFC-31)
+192.60.1.32,IPCam-32,Camera,校園,辦公室,IP攝影機 海思方案，UPnP，Linux 4.9 (原HP-32)
+192.60.1.42,RuckusAP-42,AP,待確認,校園,Ruckus ZoneFlex AP (原誤標Axis攝影機)，SN-421444108127
+192.60.1.5,00:11:32:66:D0:B1,FS RackStation,NAS,機房,FS RackStation NAS，接核心8100 1/1/1 [MAC更新:Synology]
+192.60.1.6,00:11:32:41:7C:DD,w2 RackStation,NAS,機房,w2 RackStation NAS，接核心8100 1/1/29
+192.60.1.7,BC:97:E1:4B:6F:02,VMware ESXi,Server,機房,虛擬化主機
+192.60.1.97,00:20:6B:3C:E8:F4,Konica C224e-1,Printer,辦公室,BizHub C224e
+192.60.1.98,00:20:6B:FF:98:F5,Konica C224e-2,Printer,辦公室,BizHub C224e
+192.60.1.99,00:20:6B:FF:97:0A,Konica C224e-3,Printer,辦公室,BizHub C224e
+,02:11:32:2A:CA:30,本機MAC-27,Device,機房,本機/未指派 MAC，Port27 (Konica 群)，可能虛擬/整形 MAC
+,04:D5:90:7D:7C:EA,FortiGate-500E-2,Firewall,機房,FortiGate 500E 第二介面/HA (與.253只差2)，Port31
+,22:EC:70:3E:A0:81,未知-21A,Device,樓層,local MAC (22EC70)，Port21 下接2930F-A
+,28:28:5D:E4:60:92,Zyxel設備-25,Device,待確認,Zyxel OUI 28285D，Port25 (2930F-C)
+,3C:33:32:75:82:50,D-Link設備-45,Switch,待確認,D-Link OUI 3C3332，Port45
+,52:C6:80:8F:D6:4B,未知-21B,Device,樓層,local MAC (52C680)，Port21 (2930F-A)
+,6E:5D:FD:9C:58:FF,未知-21C,Device,樓層,local MAC (6E5DFD)，Port21 (2930F-A)，可能隨身裝置
+,88:B7:EB:BE:46:79,Apple設備-21,Device,樓層,Apple OUI 88B7EB，Port21 (2930F-A)，iPhone/Mac
+,8E:35:8B:B8:A9:1A,未知-23A,Device,樓層,local MAC (8E358B)，Port23 (2930F-B)
+,90:09:D0:8E:B2:57,Synology-43,NAS,待確認,Synology OUI 9009D0，Port43，可能另一台NAS
+,C8:7F:54:17:1C:86,ASUS主機-45,Desktop,待確認,ASUS OUI C87F54，Port45
+,D0:09:C8:BA:C1:20,Cisco設備-27,Switch,待確認,Cisco OUI D009C8，Port27，可能交換器
+,D0:55:09:3C:4F:11,Nintendo-21,Device,樓層,Nintendo OUI D05509!，Port21 (2930F-A)，Switch主機
+,E0:5F:B5:C2:86:74,未知-21D,Device,樓層,E05FB5，Port21 (2930F-A)
+,E0:B9:4D:76:CD:3E,深圳比藍-21E,Device,樓層,Shenzhen Bilian E0B94D，Port21，可能IoT/投影
+,E0:B9:4D:A3:D4:E9,深圳比藍-21F,Device,樓層,Shenzhen Bilian E0B94D，Port21
+,E0:B9:4D:A3:D4:F4,深圳比藍-21G,Device,樓層,Shenzhen Bilian E0B94D，Port21
+,F6:65:97:A8:52:60,未知-23B,Device,樓層,local MAC (F66597)，Port23 (2930F-B)
+192.60.1.21,DC:A6:32:8E:17:61,RPi-21,Device,(待確認),nmap新增 [Raspberry Pi Trading]
+192.60.1.31,00:0F:0D:2E:67:75,IPCam-31,Camera,(待確認),nmap新增 [Hunt Electronic]
+192.60.1.32,00:0F:0D:2F:1D:69,IPCam-32,Camera,(待確認),nmap新增 [Hunt Electronic]
+192.60.1.42,E0:10:7F:2B:AD:C0,RuckusAP-42,AP,(待確認),nmap新增 [Ruckus Wireless]
+192.60.1.150,10:7C:61:49:3C:BD,未知-150,Device,(待確認),nmap新增 [Unknown]
