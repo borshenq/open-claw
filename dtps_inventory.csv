@@ -1,4 +1,4 @@
-MAC,IPs,Name,Type,Location,Switch,Port,Notes
+﻿MAC,IPs,Name,Type,Location,Switch,Port,Notes
 00:03:21:12:37:B9,192.60.1.200,Reco儀器設備,Instrument,未知,忠棟Aruba2930F,9,Reco Research(00:03:21)儀器/資料擷取設備，無開放埠，角色待確認
 00:0C:29:E5:AF:F9,192.60.1.134,VM-134,VM,機房,機房Aruba2930F,1,VMware VM (MAC 00:0C:29)，線上待辨識
 00:0C:E6:B9:30:80,192.60.1.137,1年級(離線)AP,AP,1年級(離線),忠棟Aruba2930F,13,"FortiAP-U431F (SN PU431FTH20005630, SSL憑證辨識) [DHCP:原192.60.1.112→192.60.1.137]"
